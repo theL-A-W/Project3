@@ -1,6 +1,92 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+} */
+body{
+  background-color: rgb(243, 240, 240);
+}
+.nav{
+  background-color: rgb(39, 39, 100);
+  color: white;
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  /* position: absolute;
+  top: 0px;
+  left: 0px; */
+  margin-bottom: 2vh;
+  width: 100vw;
+  height: fit-content;
+}
+#searchBar{
+  height: 4vh;
+  width: 25vw;
+}
+#submit-search{
+  margin: 1vw;
+  padding: .5vw;
+}
+.profile-img{
+  height: 6vh;
+  width: 4.25vw;
+  border-radius: 50%;
+  background-image: url("https://www.mountsinai.on.ca/wellbeing/our-team/team-images/person-placeholder/image");
+  background-position: center;
+  background-size: cover;
+  float: right;
+  margin: 0 1vw;
+  box-shadow: 0px 0px 5px grey;
+}
+.header{
+  width: 100vw;
+  padding: 2px 0;
+}
+#site-title{
+  font-size: 4vw;
+}
+.friend{
+  float: right;
+  margin-right: 1.5vw;
+  padding: 1vw;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 0px 5px grey;
+}
+#friend-list{
+  list-style: none;
+  padding: 0 1vw;
+}
+#friends-title{
+  text-decoration: underline;
+}
+.footer{
+position: absolute;
+bottom: 0;
+width: 100vw;
+}
+#footer-nav{
+  display: inline-flex;
+  gap: 10vw;
+  list-style: none;
+}
+.popular-events{
+  margin-left: 11vw;
+  padding: 1vh 5vw;
+  background-color: white;
+  box-shadow: 0px 0px 5px grey;
+  width: fit-content
+}
+.calendar-box{
+  display: grid;
+  justify-content: center;
+}
+.calendar-itm{
+  height: 50vh;
+  width: 70vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

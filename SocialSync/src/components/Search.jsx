@@ -3,7 +3,10 @@ export default function Search (){
     return (
         
         <div className="search">
-            <h1 id="search-title">This is the search title</h1>
+                <form>
+                    <input placeholder="search" type="text" id="searchBar"></input>
+                    <button id="submit-search" type="submit">Enter</button>
+                </form>
         </div>
 )
 }

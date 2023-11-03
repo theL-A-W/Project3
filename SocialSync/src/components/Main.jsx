@@ -1,9 +1,17 @@
+import { Route, Routes } from 'react-router-dom'
+import Home from './Home'
+import UserCalendar from './UserCalendar'
+import Authentication from './Authentication'
 
 export default function Main (){
     return (
         
         <div className="main">
-            <h1 id="main-title">This is the main</h1>
+            <Routes>
+                <Route exact path ="/" element ={<Home/>} />
+                <Route exact path ="/UserCalendar" element ={<UserCalendar/>} />
+                <Route exact path ="/Authentication" element ={<Authentication/>} />
+            </Routes>
         </div>
 )
 }
