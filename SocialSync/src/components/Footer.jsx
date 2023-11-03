@@ -3,7 +3,13 @@ export default function Footer (){
     return (
         
         <div className="footer">
-            <h1 id="footer-title">This is the Footer</h1>
+            <ul id="footer-nav">
+                <li>Home</li>
+                <li>Create</li>
+                <li>Sign-up</li>
+                <li>Log-in</li>
+                <li>Contact-Us</li>
+            </ul>
         </div>
 )
 }

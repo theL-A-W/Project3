@@ -1,9 +1,14 @@
+import Search from './Search'
+import Authentication from './Authentication'
+import { Link } from 'react-router-dom'
 
 export default function Nav (){
     return (
         
         <div className="nav">
-            <h1 id="nav-title">This is the nav</h1>
+            <div id="site-title"><Link to="/">SocialSync</Link></div>
+            <Search />
+            <Authentication/>
         </div>
 )
 }

@@ -3,7 +3,15 @@ export default function Friend (){
     return (
         
         <div className="friend">
-            <h1 id="friend-title">This is the Friend</h1>
+            <h3 id="friends-title">Friends:</h3>
+            <ul id="friend-list">
+                <li>Friend Name</li>
+                <li>Friend Name</li>
+                <li>Friend Name</li>
+                <li>Friend Name</li>
+                <li>Friend Name</li>
+                <li>Friend Name</li>
+                </ul>
         </div>
 )
 }
