@@ -1,4 +1,5 @@
 import Friend from './Friend'
+import Calendar from './Calendar'
 
 
 export default function Home (){
@@ -12,9 +13,7 @@ export default function Home (){
                 <h3>Number 1 popular event --- #of likes</h3>
             </div>
             <Friend/>
-            <div className='calendar-box'>
-                <h1 className='calendar-itm'>This is the Calendar</h1>
-            </div>
+            <Calendar/>
         </div>
 )
 }

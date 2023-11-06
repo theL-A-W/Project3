@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 // import Authentication from './components/Authentication'
 
 
+
 function App() {
 
 
@@ -13,8 +14,8 @@ function App() {
     <div>
       <Header />
       <Main />
-      <Footer/>
-    
+      {/* <Footer/> */}
+
     </div>
   )
 }

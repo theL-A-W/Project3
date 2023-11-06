@@ -1,3 +1,4 @@
+
 // import React from 'react';
 // import { useAuth0 } from '@auth0/auth0-react';
 // import LoginButton from './LoginButton';
@@ -8,8 +9,6 @@
 // console.log(isAuthenticated)
 //     return (
 //         <div className="authentication">
-//             <h3 id="sign-up">Sign-up</h3>
-//             <h1 id="authentication-title">This is the authentication title</h1>
 //             {isAuthenticated ? <LogoutButton /> : <LoginButton />}
 //         </div>
 //     );
