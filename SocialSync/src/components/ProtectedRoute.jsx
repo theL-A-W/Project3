@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-
-const UserProfile = ({ component: Component, ...rest }) => {
+//ProtectedRoute is a route guard that checks if the user is authenticated. If they are, it proceeds to render the requested component. If not, it redirects the user to the login page. 
+const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { authState } = useAuth();
 
   return (
@@ -16,4 +16,4 @@ const UserProfile = ({ component: Component, ...rest }) => {
   );
 };
 
-export default UserProfile;
+export default ProtectedRoute;
