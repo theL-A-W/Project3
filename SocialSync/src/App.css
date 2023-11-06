@@ -78,15 +78,8 @@ width: 100vw;
   box-shadow: 0px 0px 5px grey;
   width: fit-content
 }
-.calendar-box{
-  display: grid;
-  justify-content: center;
+.authentication{
+  display: inline;
 }
-.calendar-itm{
-  height: 50vh;
-  width: 70vw;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
