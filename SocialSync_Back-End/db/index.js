@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb+srv://WOS_IAEA:123LookAtMe@woscluster0.2uovivz.mongodb.net/')
+    .connect('mongodb+srv://WOS_IAEA:123LookAtMe@woscluster0.2uovivz.mongodb.net/SocialSync')
     .then(() => {
         console.log('Successfully connected to MongoDB.')
     })
