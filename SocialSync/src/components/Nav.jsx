@@ -1,8 +1,7 @@
 import Search from './Search'
-// import Authentication from './Authentication'
+import Authentication from './Login/Authentication'
 import { Link } from 'react-router-dom'
-import LoginButton from './LoginButton'
-import LogoutButton from './LogoutButton'
+
 
 export default function Nav (){
     return (
@@ -10,9 +9,7 @@ export default function Nav (){
         <div className="nav">
             <div id="site-title"><Link to="/">SocialSync</Link></div>
             <Search />
-<LoginButton/>
-<LogoutButton/>
-            {/* <Authentication/> */}
+            <Authentication/>
         </div>
 )
 }
