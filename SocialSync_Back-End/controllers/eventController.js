@@ -2,8 +2,8 @@ const { Event }  = require('../models');
 
 const getAllEvents = async (req, res) => {
     try {
-        const Events = await Event.find()
-        res.json(Events)
+        const events = await Event.find();
+        res.json(events);
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -11,52 +11,52 @@ const getAllEvents = async (req, res) => {
 
 async function getOneEvent(req, res) {
     try {
-        const id = req.params.id
-        const Event = await Event.findById(id)
-        if (Event) {
-            return res.json(Event)
+        const id = req.params.id;
+        const event = await Event.findById(id);
+        if (event) {
+            return res.json(event);
         }
-        return res.status(404).send('Event with this id doesnt exist')
+        return res.status(404).send("Event with this id doesn't exist");
     } catch (error) {
-        return res.status(500).send(error.message)
+        return res.status(500).send(error.message);
     }
 }
 
-async function createEvent(req,res) {
+async function createEvent(req, res) {
     try {
-        const Event = await new Event (req.body)
-        await Event.save()
+        const event = new Event(req.body);
+        await event.save();
         return res.status(201).json({
-            Event
-        })
+            event
+        });
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
-async function updateEvent(req,res) {
+async function updateEvent(req, res) {
     try {
-        const id = req.params.id
-        const Event = await Event.findByIdAndUpdate(id, req.body, {new: true})
-        if (Event) {
-            return res.status(200).json(Event)
+        const id = req.params.id;
+        const event = await Event.findByIdAndUpdate(id, req.body, { new: true });
+        if (event) {
+            return res.status(200).json(event);
         }
-        throw new Error('Event not found')
+        throw new Error('Event not found');
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
-async function deleteEvent(req,res) {
+async function deleteEvent(req, res) {
     try {
-        const id = req.params.id
-        const Event =  await Event.findByIdAndDelete(id)
-        if (Event) {
-            return res.status(200).json(Event)
+        const id = req.params.id;
+        const event =  await Event.findByIdAndDelete(id);
+        if (event) {
+            return res.status(200).json(event);
         }
-        throw new Error('Event not found')
+        throw new Error('Event not found');
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 

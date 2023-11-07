@@ -1,128 +1,72 @@
-const mongoose = require('mongoose');
 const db = require('../db');
 const { Event, EventCategory, Profile, User } = require('../models/index');
-
-// Define userIDs array to store generated user IDs
-const userIDs = [];
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+console.log('DB On');
 
 const main = async () => {
-  // Users Data
-  const usersData = [
-    {
-      userName: 'user1',
-      email: 'user1@example.com',
-      passwordHash: 'passwordhash1',
-    },
-    {
-      userName: 'user2',
-      email: 'user2@example.com',
-      passwordHash: 'passwordhash2',
-    },
-    {
-      userName: 'user3',
-      email: 'user3@example.com',
-      passwordHash: 'passwordhash3',
-    },
-  ];
+  ////Add new Users\\\\
+  const User1 = await User.create({
+    UserName: 'User12345',
+    email: 'User1@example.com',
+    passwordHash: 'passwordhash1',
+  });
+  const User2 = await User.create({
+    UserName: 'User2',
+    email: 'User2@example.com',
+    passwordHash: 'passwordhash2',
+  });
+  const User3 = await User.create({
+    UserName: 'User3',
+    email: 'User3@example.com',
+    passwordHash: 'passwordhash3',
+  });
 
-  // Create User instances and save them to the database
-  for (const userData of usersData) {
-    const user = new User(userData);
-    const savedUser = await user.save();
-    userIDs.push(savedUser._id); // Store the generated user IDs
-  }
+  ////Add new Event Categories\\\\
+  const eventCategories1 = await EventCategory.create({
+    name: 'Business',
+    description: 'Events related to the business world.',
+  });
+  
+  const eventCategories2 = await EventCategory.create({
+    name: 'Sports',
+    description: 'Sports-related events and activities.',
+  });
 
-  // Event Categories
-  const categories = [
-    {
-      name: 'Business',
-      description: 'Events related to the business world.',
-    },
-    {
-      name: 'Sports',
-      description: 'Sports-related events and activities.',
-    },
-    {
-      name: 'Party',
-      description: 'Party and entertainment events.',
-    },
-    {
-      name: 'Other',
-      description: 'Other miscellaneous events and categories.',
-    },
-  ];
+  const eventCategories3 = await EventCategory.create({
+    name: 'Party',
+    description: 'Party and entertainment events.',
+  });
 
-  // Create EventCategory instances and save them to the database
-  for (const categoryData of categories) {
-    const eventCategory = new EventCategory(categoryData);
-    await eventCategory.save();
-  }
+  const eventCategories4 = await EventCategory.create({
+    name: 'Other',
+    description: 'Other miscellaneous events and categories.'
+  });
 
-  // Events Data
-  const eventsData = [
-    {
-      userId: userIDs[0], // Use the generated user IDs
-      eventCategoryId: mongoose.Types.ObjectId('categoryId1'), // Replace with actual category ID
-      title: 'Business Event 1',
-      description: 'An example business event.',
-      startDate: new Date('2023-11-07T10:00:00'),
-      endDate: new Date('2023-11-07T12:00:00'),
-      privacyLevel: 'Public',
-      location: 'Business Center A',
-      image: 'https://example.com/business-event.jpg',
-    },
-    {
-      userId: userIDs[1], // Use the generated user IDs
-      eventCategoryId: mongoose.Types.ObjectId('categoryId2'), // Replace with actual category ID
-      title: 'Sports Event 1',
-      description: 'A sports event for enthusiasts.',
-      startDate: new Date('2023-11-07T10:00:00'),
-      endDate: new Date('2023-11-07T12:00:00'),
-      privacyLevel: 'Private',
-      location: 'Sports Stadium',
-      image: 'https://example.com/sports-event.jpg',
-    },
-    {
-      userId: userIDs[2], // Use the generated user IDs
-      eventCategoryId: mongoose.Types.ObjectId('categoryId3'), // Replace with actual category ID
-      title: 'Party Time',
-      description: 'Let’s celebrate and have a good time!',
-      startDate: new Date('2023-11-08T20:00:00'),
-      endDate: new Date('2023-11-08T23:00:00'),
-      privacyLevel: 'Public',
-      location: 'Party Venue',
-      image: 'https://example.com/party-event.jpg',
-    },
-  ];
-
-  // Create Event instances and save them to the database
-  for (const eventData of eventsData) {
-    const event = new Event(eventData);
-    await event.save();
-  }
-
-  // Profiles Data
+  ////Add new Profiles\\\\
   const profilesData = [
     {
-      userID: userIDs[0], // Use the generated user IDs
+      userID: User1._id,
       firstName: 'John',
       lastName: 'Doe',
       dateOfBirth: '1990-05-15',
-      profileImage: 'https://example.com/john-doe.jpg',
+      profileImage: 
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/John_Doe%2C_born_John_Nommensen_Duchac.jpg/1024px-John_Doe%2C_born_John_Nommensen_Duchac.jpg',
     },
     {
-      userID: userIDs[1], // Use the generated user IDs
+      userID: User2._id,
       firstName: 'Alice',
       lastName: 'Smith',
       dateOfBirth: '1985-12-03',
-      profileImage: 'https://example.com/alice-smith.jpg',
+      profileImage: 
+        'https://assets.vogue.com/photos/5891f2f8186d7c1b6493c186/master/w_2240,c_limit/img-alicesmith_133654950324.jpg',
     },
     {
-      userID: userIDs[2], // Use the generated user IDs
+      userID: User3._id,
       firstName: 'Bob',
       lastName: 'Johnson',
       dateOfBirth: '1995-08-20',
-      profileImage: 'https://example.com/bob-johnson.jpg',
+      profileImage: 
+        'https://obamascholars.oxy.edu/sites/default/files/bob-johnson_800x1200.jpg',
     },
   ];
 
@@ -132,7 +76,60 @@ const main = async () => {
     await profile.save();
   }
 
-  db.close();
+  ////Add new Events\\\\
+  const eventsData = [
+    {
+      userId: User1._id,
+      eventCategoryId: eventCategories1._id,
+      title: 'Business Event 1',
+      description: 'An example business event.',
+      startDate: new Date('2023-11-07T10:00:00'), // November 7, 2023, 10:00 AM
+      endDate: new Date('2023-11-07T12:00:00'), // November 7, 2023, 12:00 PM
+      privacyLevel: 'Public',
+      location: 'Business Center A',
+      image:
+        'https://img.freepik.com/free-photo/yes_53876-47102.jpg?w=1380&t=st=1699296543~exp=1699297143~hmac=7354af21c90591706e451d554b671c308da2aca6eada31c6f531eb6690062b83',
+    },
+    {
+      userId: User2._id,
+      eventCategoryId: eventCategories2._id,
+      title: 'Sports Event 1',
+      description: 'A sports event for enthusiasts.',
+      startDate: new Date('2023-11-07T10:00:00'), // November 7, 2023, 10:00 AM
+      endDate: new Date('2023-11-07T12:00:00'), // November 7, 2023, 12:00 PM
+      privacyLevel: 'Private',
+      location: 'Sports Stadium',
+      image:
+        'https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?w=1380&t=st=1699296782~exp=1699297382~hmac=41d8ab4cc4968a348bff2bac730e23f37de0ea50b97ce25e20c2b550d4482618',
+    },
+    {
+      userId: User3._id,
+      eventCategoryId: eventCategories3._id,
+      title: 'Party Time',
+      description: 'Let’s celebrate and have a good time!',
+      startDate: new Date('2023-11-08T20:00:00'), // November 8, 2023, 8:00 PM
+      endDate: new Date('2023-11-08T23:00:00'), // November 8, 2023, 11:00 PM
+      privacyLevel: 'Public',
+      location: 'Party Venue',
+      image:
+        'https://www.visionvivaah.com/blog/wp-content/uploads/2019/12/Event-Organisers-For-Dance-Parties-1024x514.jpg',
+    },
+  ];
+
+  // Create Event instances and save them to the database
+  for (const eventData of eventsData) {
+    const event = new Event(eventData);
+    await event.save();
+  }
 };
 
-main();
+seedAll = async () => {
+  await db.dropDatabase();
+  console.log('droppedDB');
+  await main();
+  console.log('completed main');
+  await db.close();
+  console.log('closed db');
+};
+
+seedAll();
