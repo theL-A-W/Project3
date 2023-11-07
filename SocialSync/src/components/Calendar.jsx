@@ -1,8 +1,12 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { formatDate } from '@fullcalendar/core'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import { useState } from "react"
 
@@ -28,17 +32,16 @@ const [currentEvents, setCurrentEvents] = useState([])
                 })
             }
         }
+
 //DATE CLICK FUNCTION
 const handleDateClick = (arg) => { // bind with an arrow function
     alert(arg.dateStr) 
-
 }
+
 //CREATE EVENTS
 const handleEvents = (events) => {
     setCurrentEvents(events)
-  console.log("this is working")
   }
-
 
 //SHOW EVENTS
         function renderEventContent(event) {
@@ -53,15 +56,19 @@ const handleEvents = (events) => {
           }
         
 
+          
+
+
         return (
             <div className='calendar'>
                 <FullCalendar
-                plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
+                plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, bootstrap5Plugin ]}
                 headerToolbar={{
                     left: 'dayGridMonth,timeGridWeek,timeGridDay,today',
                     center: 'title',
                     right: 'prev,next'
                   }}
+                themeSystem='bootstrap5'
                 initialView="dayGridMonth"
                 editable={true}
                 selectable={true}

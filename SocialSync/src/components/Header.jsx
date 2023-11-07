@@ -1,12 +1,12 @@
 import Nav from './Nav'
-import Profile from './Profile'
+import ProfileDropdown from './ProfileDropdown'
 
 export default function Header (){
     return (
         
         <div className="header">
                  <Nav />
-                 <Profile />
+                 <ProfileDropdown />
         </div>
 )
 }

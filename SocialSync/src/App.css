@@ -36,7 +36,7 @@ body{
   background-position: center;
   background-size: cover;
   float: right;
-  margin: 0 1vw;
+  margin: 1vh 1vw;
   box-shadow: 0px 0px 5px grey;
 }
 .header{
@@ -81,5 +81,4 @@ width: 100vw;
 .authentication{
   display: inline;
 }
-
 
