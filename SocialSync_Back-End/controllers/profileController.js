@@ -1,9 +1,9 @@
-const { Profile }  = require('../models');
+const { Profile } = require('../models');
 
 const getAllProfiles = async (req, res) => {
     try {
-        const Profiles = await Profile.find()
-        res.json(Profiles)
+        const profiles = await Profile.find();
+        res.json(profiles);
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -11,52 +11,52 @@ const getAllProfiles = async (req, res) => {
 
 async function getOneProfile(req, res) {
     try {
-        const id = req.params.id
-        const Profile = await Profile.findById(id)
-        if (Profile) {
-            return res.json(Profile)
+        const id = req.params.id;
+        const profile = await Profile.findById(id);
+        if (profile) {
+            return res.json(profile);
         }
-        return res.status(404).send('Profile with this id doesnt exist')
+        return res.status(404).send("Profile with this id doesn't exist");
     } catch (error) {
-        return res.status(500).send(error.message)
+        return res.status(500).send(error.message);
     }
 }
 
-async function createProfile(req,res) {
+async function createProfile(req, res) {
     try {
-        const Profile = await new Profile (req.body)
-        await Profile.save()
+        const profile = new Profile(req.body);
+        await profile.save();
         return res.status(201).json({
-            Profile
-        })
+            profile
+        });
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
-async function updateProfile(req,res) {
+async function updateProfile(req, res) {
     try {
-        const id = req.params.id
-        const Profile = await Profile.findByIdAndUpdate(id, req.body, {new: true})
-        if (Profile) {
-            return res.status(200).json(Profile)
+        const id = req.params.id;
+        const profile = await Profile.findByIdAndUpdate(id, req.body, { new: true });
+        if (profile) {
+            return res.status(200).json(profile);
         }
-        throw new Error('Profile not found')
+        throw new Error('Profile not found');
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
-async function deleteProfile(req,res) {
+async function deleteProfile(req, res) {
     try {
-        const id = req.params.id
-        const Profile =  await Profile.findByIdAndDelete(id)
-        if (Profile) {
-            return res.status(200).json(Profile)
+        const id = req.params.id;
+        const profile = await Profile.findByIdAndDelete(id);
+        if (profile) {
+            return res.status(200).json(profile);
         }
-        throw new Error('Profile not found')
+        throw new Error('Profile not found');
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 

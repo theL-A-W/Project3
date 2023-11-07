@@ -2,8 +2,8 @@ const { User }  = require('../models');
 
 const getAllUsers = async (req, res) => {
     try {
-        const Users = await User.find()
-        res.json(Users)
+        const Users = await User.find();
+        res.json(Users);
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -11,52 +11,52 @@ const getAllUsers = async (req, res) => {
 
 async function getOneUser(req, res) {
     try {
-        const id = req.params.id
-        const User = await User.findById(id)
-        if (User) {
-            return res.json(User)
+        const id = req.params.id;
+        const user = await User.findById(id);
+        if (user) {
+            return res.json(user);
         }
-        return res.status(404).send('User with this id doesnt exist')
+        return res.status(404).send("User with this id doesn't exist");
     } catch (error) {
-        return res.status(500).send(error.message)
+        return res.status(500).send(error.message);
     }
 }
 
-async function createUser(req,res) {
+async function createUser(req, res) {
     try {
-        const User = await new User (req.body)
-        await User.save()
+        const user = new User(req.body);
+        await user.save();
         return res.status(201).json({
-            User
-        })
+            user
+        });
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
-async function updateUser(req,res) {
+async function updateUser(req, res) {
     try {
-        const id = req.params.id
-        const User = await User.findByIdAndUpdate(id, req.body, {new: true})
-        if (User) {
-            return res.status(200).json(User)
+        const id = req.params.id;
+        const user = await User.findByIdAndUpdate(id, req.body, { new: true });
+        if (user) {
+            return res.status(200).json(user);
         }
-        throw new Error('User not found')
+        throw new Error('User not found');
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
-async function deleteUser(req,res) {
+async function deleteUser(req, res) {
     try {
-        const id = req.params.id
-        const User =  await User.findByIdAndDelete(id)
-        if (User) {
-            return res.status(200).json(User)
+        const id = req.params.id;
+        const user = await User.findByIdAndDelete(id);
+        if (user) {
+            return res.status(200).json(user);
         }
-        throw new Error('User not found')
+        throw new Error('User not found');
     } catch (e) {
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message });
     }
 }
 
