@@ -123,3 +123,32 @@ width: 100vw;
   background-color: white;
   color: white;
 }
+#create-event{
+  float: right;
+  margin-right: 2vw;
+  background-color: white;
+  border: 1px solid white;
+  color: black;
+  padding: .75vh .6vw;
+  box-shadow: 0px 0px 5px grey;
+}
+#dropdown{
+  background-color: white;
+}
+#dropdown-basic{
+  background-color: white;
+  color: black;
+  border-color: rgb(227, 226, 226);
+}
+#dropdown-basic:focus{
+  box-shadow: 0px 0px 5px rgba(16, 18, 128, 0.861);
+  border-color: rgba(16, 18, 128, 0.861);
+}
+.event-details-label{
+font-weight: 500;
+font-size: 2.1vh;
+}
+.event-text-display{
+  /* border: 1px solid rgb(227, 226, 226); */
+  color: rgb(81, 80, 80);
+}
