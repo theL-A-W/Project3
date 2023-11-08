@@ -16,6 +16,7 @@ const [currentEvents, setCurrentEvents] = useState([])
 
 
 
+
 //CREATE TITLE FOR NEW EVENT
   const handleDateSelect = (selectInfo) => {
     let title = prompt('Please enter a new title for your event')
@@ -37,6 +38,7 @@ const [currentEvents, setCurrentEvents] = useState([])
 //DATE CLICK FUNCTION
 const handleDateClick = (arg) => { // bind with an arrow function
     alert(arg.dateStr) 
+  
 }
 
 //CREATE EVENTS

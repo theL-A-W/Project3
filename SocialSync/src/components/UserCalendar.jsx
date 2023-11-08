@@ -10,6 +10,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import { useState } from "react"
+import EventDetails from './EventDetails';
 
 export default function UserCalendar (){
 const [currentEvents, setCurrentEvents] = useState([])
@@ -84,6 +85,7 @@ const handleEvents = (events) => {
                 // eventChange={function(){}}
                 // eventRemove={function(){}}
                 />
+                <EventDetails/>
             </div>
           ) 
         }

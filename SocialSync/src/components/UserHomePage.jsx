@@ -1,9 +1,11 @@
 import UserCalendar from "./UserCalendar"
+import EventForm from "./Calendar/EventForm"
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
+
 
 // library.add( faDeleteLeft )
 
@@ -19,6 +21,7 @@ export default function UserHomePage (){
         <div>
             <h1 id="user-home-title">Welcome User</h1>
             <Button id="friendsListButton" variant="primary" onClick={handleShow}>Friends</Button>
+                <EventForm/>
             <div className="upcoming-events">
                 <h2>Upcomming Events</h2>
                 <ul>
@@ -65,7 +68,7 @@ export default function UserHomePage (){
         </Offcanvas.Body>
       </Offcanvas>
     </div>
-
+            
             <UserCalendar/>
         </div>
 
