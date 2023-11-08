@@ -1,7 +1,7 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { formatDate } from '@fullcalendar/core'
