@@ -34,12 +34,7 @@ getToken()
   return (
     <div>
       <Header />
-      <Routes>
-                <Route exact path ="/" element ={<Home/>} />
-                <Route exact path ="/usercalendar" element ={<UserCalendar/>} />
-                {/* <Route exact path ="/Authentication" element ={<Authentication/>} /> */}
-                {/* <Route exact path="/callback" element={<AuthCallback />} />  */}
-            </Routes>
+      <Main/>
       {/* <Footer/> */}
 
     </div>
