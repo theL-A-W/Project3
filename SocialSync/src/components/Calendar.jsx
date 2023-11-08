@@ -9,6 +9,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import { useState } from "react"
+import EventDetails from './EventDetails'
 
 export default function Calendar (){
 const [currentEvents, setCurrentEvents] = useState([])
@@ -61,6 +62,7 @@ const handleEvents = (events) => {
 
         return (
             <div className='calendar'>
+{/* CALENDAR */}
                 <FullCalendar
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, bootstrap5Plugin ]}
                 headerToolbar={{
@@ -83,6 +85,8 @@ const handleEvents = (events) => {
                 // eventChange={function(){}}
                 // eventRemove={function(){}}
                 />
+{/* EVENT DETAILS */}
+                  <EventDetails/>
             </div>
           ) 
         }
