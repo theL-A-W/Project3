@@ -5,6 +5,9 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 // require('dotenv').config();
+const { auth } = require('express-openid-connect');
+
+
 
 // include controller name and path here
 const userController = require('./controllers/UserController.js')
@@ -20,6 +23,19 @@ app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(logger('dev'))
 
+// Auth0 Middleware setup
+const authConfig = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET, // Your secret - set this in your .env file
+  baseURL: 'http://localhost:' + PORT, // Your baseURL
+  clientID: process.env.CLIENT_ID, // Your Auth0 client ID - set this in your .env file
+  issuerBaseURL: process.env.ISSUER_BASE_URL // Your Auth0 domain - set this in your .env file
+};
+
+app.use(auth(authConfig));
+
+//Routes
 app.get('/Users', userController.getAllUsers)
 app.get('/Profiles', profileController.getAllProfiles)
 app.get('/EventCategories', eventCategoryController.getAllEventCategories)
@@ -51,6 +67,16 @@ app.delete('/event/:id', eventController.deleteEvent);
 app.get('/', (req, res) => {
     res.send('Landing root!!')
   })
+
+// As example Routes that require authentication
+app.get('/protected', (req, res) => {
+  // This will require the user to be authenticated
+  if (req.oidc.isAuthenticated()) {
+    res.send('Protected page');
+  } else {
+    res.oidc.login({ returnTo: '/protected' });
+  }
+});
 
   //Static Files
 app.use(express.static('ProfileFE')); //static pages
