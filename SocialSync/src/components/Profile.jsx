@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react'; // Import the hook
 import './Styles/Profile.css';
 
 const Profile = () => {
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0(); // Destructure the Auth0 hook
   const initialState = {
     firstName: '',
     lastName: '',
@@ -13,32 +15,40 @@ const Profile = () => {
   const [formState, setFormState] = useState(initialState);
 
   useEffect(() => {
-    // Assuming you have the user ID from your application's state
-    const userId = '654a6473dc31b99f5f4adf8d'; // Replace with the actual user ID
-    axios.get(`http://localhost:3001/profile/${userId}`) // Replace with your API endpoint
-      .then((response) => {
-        const userData = response.data; // Assuming the response contains user data
-        setFormState(userData);
-      })
-      .catch((error) => {
-        console.error('Error fetching profile data:', error);
-      });
-  }, []);
+    if (isAuthenticated && user) {
+      const getUserData = async () => {
+        try {
+          const accessToken = await getAccessTokenSilently();
+          const response = await axios.get(`http://localhost:3001/profile/${user.sub}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+          setFormState(response.data); // Assuming the response contains user data
+        } catch (error) {
+          console.error('Error fetching profile data:', error);
+        }
+      };
+      getUserData();
+    }
+  }, [user, isAuthenticated, getAccessTokenSilently]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Assuming you have the user ID from your application's state
-    const userId = '654a6473dc31b99f5f4adf8d'; // Replace with the actual user ID
-    axios.put(`http://localhost:3001/profile/${userId}`, formState)
-      .then((response) => {
-        console.log(response.data);
+    if (isAuthenticated && user) {
+      try {
+        const accessToken = await getAccessTokenSilently();
+        await axios.put(`http://localhost:3001/profile/${user.sub}`, formState, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         alert('Profile updated successfully');
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error updating profile:', error);
         alert('Failed to update profile');
-      });
+      }
+    }
   };
 
   const handleChange = (event) => {
