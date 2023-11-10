@@ -1,19 +1,40 @@
-import { useEffect } from 'react';
+import EventDetails from './EventDetails';
+import { useAuth0 } from '@auth0/auth0-react';
+import Friends from './Friend';
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { formatDate } from '@fullcalendar/core'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
-import { useState } from "react"
-import EventDetails from './EventDetails';
-import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
-import Friends from './Friend';
+
+import { useState, useEffect } from "react"
+
+export default function UserCalendar (){
+const [currentEvents, setCurrentEvents] = useState([])
+const [showEventDetails, setShowEventDetails] = useState(false)
+const [selectedEvent, setSelectedEvent] = useState(null)
+
+  const getEvents = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/event')
+      const formattedEvents = response.data.map(event => ({
+        id: event._id,
+        title: event.title,
+        start: event.startDate,
+        end: event.endDate,
+        allDay: false, // adjust as needed based on your data
+      }))
+      console.log(formattedEvents)
+      setCurrentEvents(formattedEvents)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
 
 export default function UserCalendar (){
 const [currentEvents, setCurrentEvents] = useState([])
@@ -54,11 +75,16 @@ useEffect(() => {
 
 
 
+  useEffect(() => {
+  getEvents()
+}, [])
 
 //CREATE TITLE FOR NEW EVENT
   const handleDateSelect = (selectInfo) => {
     let title = prompt('Please enter a new title for your event')
     let calendarApi = selectInfo.view.calendar
+
+
 
     calendarApi.unselect() // clear date selection
 
@@ -76,29 +102,39 @@ useEffect(() => {
 //DATE CLICK FUNCTION
 const handleDateClick = (arg) => { // bind with an arrow function
     alert(arg.dateStr) 
+  
 }
 
 //CREATE EVENTS
-const handleEvents = (events) => {
-    setCurrentEvents(events)
+const handleEvents = (event) => {
+ 
   }
 
 //SHOW EVENTS
-        function renderEventContent(event) {
-            return (
-              <>
-                <li key={event.id}>
-                <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
-                <i>{event.title}</i>
-                </li>
-              </>
-            )
-          }
-        
-
-          
-
-
+        // function renderEventContent(eventInfo) {
+        //     return (
+        //       <div className="render-event">
+        // <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
+        // <i>{eventInfo.event.title}</i>
+        //       </div>
+        //     )
+        //   }
+        const renderEventContent = (eventInfo) => {
+          // userId === currentUserId?
+          return (
+            <div
+              className="render-event"
+              onClick={() => {
+                setShowEventDetails(true);
+                setSelectedEvent(eventInfo.event);
+              }}
+            >
+              <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
+              <i>{eventInfo.event.title}</i>
+            </div>
+          )
+        }
+{/* CALENDAR */}
         return (
             <div className='calendar'>
                 <FullCalendar
@@ -114,6 +150,7 @@ const handleEvents = (events) => {
                 selectable={true}
                 selectMirror={true}
                 dayMaxEvents={true}
+                events={currentEvents}
                 eventContent={renderEventContent}
                 dateClick={handleDateClick}
                 select={handleDateSelect}
@@ -123,13 +160,13 @@ const handleEvents = (events) => {
                 // eventChange={function(){}}
                 // eventRemove={function(){}}
                 />
-                <EventDetails/>
+
+{/* EVENT DETAILS */}
+                  {/* <EventDetails/> */}
+                  {showEventDetails && <EventDetails event={selectedEvent}  />}
+
                 <Friends/>
+
             </div>
           ) 
         }
-
-
-
-
-

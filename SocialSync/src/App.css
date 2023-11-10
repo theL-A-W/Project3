@@ -160,3 +160,7 @@ font-size: 2.1vh;
   padding: .15vw;
   overflow-y: scroll;
 }
+.dropdowns{
+display: grid;
+grid-template-columns: 11vw 11vw;
+}

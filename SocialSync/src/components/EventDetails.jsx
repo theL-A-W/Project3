@@ -1,28 +1,35 @@
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 
-
-export default function EventDetails (){
-    const [modalShow, setModalShow] = React.useState(true)
+export default function EventDetails ( event, onHide){
+    const [modalShow, setModalShow] = useState(false)
 
 //USE THIS OR USECONTEXT TO SEND EVENT DATA FROM CALENDAR AXIOS CALL
 
-// useEffect(() => {
-//   const getEvents = async () => {
-//     try {
-//       const response = await axios.get('http://localhost:3001/event')
-//       console.log(response.data)
 
-//       setCurrentEvents(response.data.event)
-//     } catch (error) {
-//       console.error('Error fetching data:', error)
-//     }
-//   }
-//   getEvents()
-// }, [])
-console.log(modalShow)
+//AXIOS CALL
+    // useEffect(() => {
+    //   const getEvents = async () => {
+    //     try {
+    //       const response = await axios.get('http://localhost:3001/event')
+    //       console.log(response.data)
 
+    //       setCurrentEvents(response.data.event)
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error)
+    //     }
+    //   }
+    //   getEvents()
+    // }, [])
+    console.log(modalShow)
+
+
+
+    useEffect(() => {
+      setModalShow(true);
+    }, [event]);
 
 
 
@@ -84,10 +91,6 @@ console.log(modalShow)
 
 
 
-
-
-
-
     return (
         
 
@@ -97,6 +100,7 @@ console.log(modalShow)
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
+            
         </div>
 )
 }
