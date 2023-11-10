@@ -8,12 +8,17 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import UserCalendar from './components/UserCalendar'
 // import Authentication from './components/Authentication'
+import DataContext from './DataContext';
 
 
 
 
 function App() {
 const {isAuthenticated, getAccessTokenSilently}= useAuth0()
+
+const [eventDetailData, seteventDetailData] = useState({})
+const [searchResultsData, setSearchResultsData] = useState([{}])
+const [searchDisplay, setSearchDisplay] = useState('')
   
 useEffect(() => {
     const getToken = async () => {
@@ -33,10 +38,15 @@ getToken()
 
   return (
     <div>
+      <DataContext.Provider value={{
+        eventDetailData, seteventDetailData,
+        searchResultsData, setSearchResultsData,
+        searchDisplay, setSearchDisplay
+      }}>
       <Header />
       <Main/>
       {/* <Footer/> */}
-
+      </DataContext.Provider>
     </div>
   )
 }

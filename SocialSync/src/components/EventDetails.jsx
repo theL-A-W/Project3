@@ -1,10 +1,37 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import React from 'react';
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+
+export default function EventDetails ( event, onHide){
+    const [modalShow, setModalShow] = useState(false)
+
+//USE THIS OR USECONTEXT TO SEND EVENT DATA FROM CALENDAR AXIOS CALL
 
 
-export default function EventDetails (){
-    const [modalShow, setModalShow] = React.useState(false)
+//AXIOS CALL
+    // useEffect(() => {
+    //   const getEvents = async () => {
+    //     try {
+    //       const response = await axios.get('http://localhost:3001/event')
+    //       console.log(response.data)
+
+    //       setCurrentEvents(response.data.event)
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error)
+    //     }
+    //   }
+    //   getEvents()
+    // }, [])
+    console.log(modalShow)
+
+
+
+    useEffect(() => {
+      setModalShow(true);
+    }, [event]);
+
+
 
     function MyVerticallyCenteredModal(props) {
         return (
@@ -55,6 +82,7 @@ export default function EventDetails (){
 
             </Modal.Body>
             <Modal.Footer>
+     
               <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
           </Modal>
@@ -63,20 +91,16 @@ export default function EventDetails (){
 
 
 
-
-
-
-
     return (
         
 
         <div className="eventDetails">
-            <button variant="primary" onClick={() => setModalShow(true)}>Event Details</button>
-
+            {/* <button variant="primary" onClick={() => setModalShow(true)}>Event Details</button> */}
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
+            
         </div>
 )
 }
