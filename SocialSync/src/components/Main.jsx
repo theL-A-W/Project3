@@ -5,7 +5,7 @@ import UserHomePage from './UserHomePage'
 import Profile from './Profile'
 import NavSearch from './Search'
 // import Authentication from './Authentication'
-// import AuthCallback from './AuthCallback';
+// import AuthCallback from '../components/Login/AuthCallback';
 
 export default function Main (){
     return (

@@ -1,3 +1,6 @@
+import EventDetails from './EventDetails';
+import { useAuth0 } from '@auth0/auth0-react';
+import Friends from './Friend';
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -8,9 +11,8 @@ import { formatDate } from '@fullcalendar/core'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
+
 import { useState, useEffect } from "react"
-import EventDetails from './EventDetails'
-import axios from 'axios'
 
 export default function UserCalendar (){
 const [currentEvents, setCurrentEvents] = useState([])
@@ -33,6 +35,45 @@ const [selectedEvent, setSelectedEvent] = useState(null)
       console.error('Error fetching data:', error)
     }
   }
+
+export default function UserCalendar (){
+const [currentEvents, setCurrentEvents] = useState([])
+const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+console.log(user)
+useEffect(() => {
+  // Function to check or create the user
+  const checkOrCreateUser = async () => {
+    if (isAuthenticated && user) {
+      try {
+        const accessToken = await getAccessTokenSilently();
+        console.log("token", accessToken)
+        // Call your API endpoint to check/create the user
+        const response = await axios.post(
+          'http://localhost:3001/User',
+          { auth0Id: user.sub, email: user.email },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+          const userId = registerResponse.data.id;
+        await axios.post('/api/sessions', { userId });
+        // Handle the response
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  axios.interceptors.request.use(request => {
+    console.log('Starting Request', JSON.stringify(request, null, 2))
+    return request
+  })
+  // Call the function
+  checkOrCreateUser();
+}, [isAuthenticated, getAccessTokenSilently, user]);
+
+
 
   useEffect(() => {
   getEvents()
@@ -119,14 +160,13 @@ const handleEvents = (event) => {
                 // eventChange={function(){}}
                 // eventRemove={function(){}}
                 />
+
 {/* EVENT DETAILS */}
                   {/* <EventDetails/> */}
                   {showEventDetails && <EventDetails event={selectedEvent}  />}
+
+                <Friends/>
+
             </div>
           ) 
         }
-
-
-
-
-

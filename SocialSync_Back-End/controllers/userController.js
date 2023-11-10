@@ -9,6 +9,19 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+async function getUserByAuth0Id(req, res) {
+    try {
+        const auth0Id = req.params.auth0Id;
+        const user = await User.findOne({ auth0Id: auth0Id }).populate('friendsUserID');
+        if (!user) {
+            return res.status(404).send("User with the specified Auth0 ID doesn't exist");
+        }
+        res.json(user);
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 async function getOneUser(req, res) {
     try {
         const id = req.params.id;
@@ -22,17 +35,37 @@ async function getOneUser(req, res) {
     }
 }
 
+//Create User
 async function createUser(req, res) {
     try {
-        const user = new User(req.body);
-        await user.save();
-        return res.status(201).json({
-            user
-        });
+        const { auth0Id, email } = req.body; // Adjust according to the actual properties sent in the request
+
+        let user = await User.findOne({ auth0Id: auth0Id });
+
+        if (!user) {
+            // If the user doesn't exist, create a new one
+            // You might want to ensure that only the fields you want to be set from the request are copied over
+            const userData = {
+                auth0Id: auth0Id,
+                email: email,
+                // Copy over other fields you want to initialize from the request
+            };
+            user = new User(userData);
+            await user.save();
+            return res.status(201).json(user);
+        } else {
+            // If user already exists, respond accordingly
+            return res.status(409).json({
+                message: "User already exists",
+                user
+            });
+        }
     } catch (e) {
         return res.status(500).json({ error: e.message });
     }
 }
+
+
 
 async function updateUser(req, res) {
     try {
@@ -65,5 +98,6 @@ module.exports = {
     getOneUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserByAuth0Id
 }

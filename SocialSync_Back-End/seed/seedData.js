@@ -21,6 +21,14 @@ const main = async () => {
     passwordHash: 'passwordhash3',
   });
 
+// Now that all users are created, let's add friend relationships // Let's say User1 and User2 are friends with User3 
+User1.friendsUserID.push(User3._id); User2.friendsUserID.push(User3._id);
+
+ // And maybe User3 is also friends with User1 
+ User3.friendsUserID.push(User1._id);
+ // Don't forget to save the updated user documents 
+ await User1.save(); await User2.save(); await User3.save();
+
   ////Add new Event Categories\\\\
   const eventCategories1 = await EventCategory.create({
     name: 'Business',

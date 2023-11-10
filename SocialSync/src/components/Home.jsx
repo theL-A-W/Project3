@@ -11,8 +11,9 @@ export default function Home (){
                 <h3>Number 1 popular event --- #of likes</h3>
                 <h3>Number 1 popular event --- #of likes</h3>
                 <h3>Number 1 popular event --- #of likes</h3>
+                <Friend/>
             </div>
-            <Friend/>
+            
             <Calendar/>
         </div>
 )
