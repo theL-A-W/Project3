@@ -1,3 +1,4 @@
+import axios from 'axios';
 import EventDetails from './EventDetails';
 import { useAuth0 } from '@auth0/auth0-react';
 import Friends from './Friend';
