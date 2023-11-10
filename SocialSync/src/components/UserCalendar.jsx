@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 import EventDetails from './EventDetails';
 import { useAuth0 } from '@auth0/auth0-react';
 import FullCalendar from '@fullcalendar/react';
@@ -36,8 +37,6 @@ const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
       console.error('Error fetching data:', error)
     }
   }
-
-
 
 console.log(user)
 useEffect(() => {

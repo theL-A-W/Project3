@@ -79,7 +79,7 @@ export default function EventForm (){
         <button id="create-event" variant="primary" onClick={handleShow}>Create Event</button>
 
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} backdrop='static'>
 {/* MODAL HEADER */}
         <Modal.Header closeButton>
           <Modal.Title>Create an Event</Modal.Title>
@@ -138,7 +138,7 @@ export default function EventForm (){
             <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic" className="privacy-dropdown" >Event Type
                     </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu >
                     <Dropdown.Item >Business</Dropdown.Item>
                     <Dropdown.Item >Sports</Dropdown.Item>
                     <Dropdown.Item >Party</Dropdown.Item>
