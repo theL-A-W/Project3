@@ -81,6 +81,18 @@ app.use(logger('dev'))
 // // Enforce JWT check on all endpoints (you might want to apply this only to secured endpoints)
 // app.use(jwtCheck);
 
+// Auth0 Middleware setup
+// const authConfig = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: process.env.SECRET, // Your secret - set this in your .env file
+//   baseURL: 'http://localhost:' + PORT, // Your baseURL
+//   clientID: process.env.CLIENT_ID, // Your Auth0 client ID - set this in your .env file
+//   issuerBaseURL: process.env.ISSUER_BASE_URL // Your Auth0 domain - set this in your .env file
+// };
+
+// app.use(auth(authConfig));
+
 
 //Routes
 app.get('/Users', userController.getAllUsers)

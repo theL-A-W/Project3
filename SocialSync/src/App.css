@@ -152,3 +152,11 @@ font-size: 2.1vh;
   /* border: 1px solid rgb(227, 226, 226); */
   color: rgb(81, 80, 80);
 }
+.render-event{
+  background-color: rgb(59, 106, 235);
+  border-radius: 5px;
+  color: white;
+  text-wrap:pretty;
+  padding: .15vw;
+  overflow-y: scroll;
+}

@@ -1,3 +1,4 @@
+//This is profile.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react'; // Import the hook
@@ -60,6 +61,11 @@ const Profile = () => {
     setFormState(initialState);
   };
 
+  const clearForm = () => {
+    setFormState(initialState);
+  };
+
+
   return (
     <div className="profile-Form">
       <h1 className="profile-h1">Profile Edit</h1>
@@ -117,6 +123,9 @@ const Profile = () => {
         </button>
         <button className="profile-button" type="cancel" onClick={cancel}>
           Cancel
+        </button>
+        <button className="profile-button" type="button" onClick={clearForm}>
+          Clear All
         </button>
         <p>Update Profile Information above.</p>
       </form>
