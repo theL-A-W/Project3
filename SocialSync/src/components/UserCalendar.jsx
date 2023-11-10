@@ -1,3 +1,4 @@
+import axios from 'axios'
 import EventDetails from './EventDetails';
 import { useAuth0 } from '@auth0/auth0-react';
 import Friends from './Friend';
@@ -35,8 +36,6 @@ const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
       console.error('Error fetching data:', error)
     }
   }
-
-
 
 console.log(user)
 useEffect(() => {
@@ -163,8 +162,6 @@ const handleEvents = (event) => {
 {/* EVENT DETAILS */}
                   {/* <EventDetails/> */}
                   {showEventDetails && <EventDetails event={selectedEvent}  />}
-
-                <Friends/>
 
             </div>
           ) 

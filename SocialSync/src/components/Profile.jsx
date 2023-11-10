@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react'; // Import the hook
 import './Styles/Profile.css';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import FormText from 'react-bootstrap/esm/FormText';
+
 
 const Profile = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0(); // Destructure the Auth0 hook
@@ -67,70 +71,40 @@ const Profile = () => {
 
 
   return (
-    <div className="profile-Form">
-      <h1 className="profile-h1">Profile Edit</h1>
-      <form className="profile-Formpt2" onSubmit={handleSubmit}>
-        <input
-          className="profile-input"
-          type="text"
-          placeholder="First Name"
-          id="firstName"
-          onChange={handleChange}
-          value={formState.firstName}
-        />
-        <label className="profile-label" htmlFor="firstName">
-          First Name
-        </label>
+    <Form className="profile-Form">
+      <FormText id="profile-title">Profile Edit</FormText>
+    <Form.Group className="mb-3" controlId="formFirstName">
+      <Form.Label>First Name:</Form.Label>
+      <Form.Control type="text" placeholder="First Name" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formLastName">
+      <Form.Label>Last Name:</Form.Label>
+      <Form.Control type="text" placeholder="Last Name" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="DOB">
+      <Form.Label>Date of Birth:</Form.Label>
+      <Form.Control type="text" placeholder="Date of Birth" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="Image URL">
+      <Form.Label>Image Upload:</Form.Label>
+      <Form.Control type="text" placeholder="Image Upload URL/File" />
+    </Form.Group>
+    <p>Update Profile Information above.</p>
+    <Form.Group className="profile-buttons">
+    <Button className="profile-button" id="profile-button" type="submit">
+      Update
+    </Button>
+    <Button className="profile-button"  id="profile-button" type="cancel" onClick={cancel}>
+      Cancel
+    </Button>
+    <Button className="profile-button"  id="profile-button" type="button" onClick={clearForm}>
+      Clear All
+    </Button>
+    </Form.Group>
+   
 
-        <input
-          className="profile-input"
-          type="text"
-          placeholder="Last name"
-          id="lastName"
-          onChange={handleChange}
-          value={formState.lastName}
-        />
-        <label className="profile-label" htmlFor="lastName">
-          Last Name
-        </label>
-
-        <input
-          className="profile-input"
-          type="text"
-          placeholder="Date Of Birth"
-          id="dateOfBirth"
-          onChange={handleChange}
-          value={formState.dateOfBirth}
-        />
-        <label className="profile-label" htmlFor="dateOfBirth">
-          Date of Birth
-        </label>
-
-        <input
-          className="profile-input"
-          type="text"
-          placeholder="Image Upload URL/file"
-          id="profileImage"
-          onChange={handleChange}
-          value={formState.profileImage}
-        />
-        <label className="profile-label" htmlFor="profileImage">
-          Image URL/File
-        </label>
-
-        <button className="profile-button" type="submit">
-          Update
-        </button>
-        <button className="profile-button" type="cancel" onClick={cancel}>
-          Cancel
-        </button>
-        <button className="profile-button" type="button" onClick={clearForm}>
-          Clear All
-        </button>
-        <p>Update Profile Information above.</p>
-      </form>
-    </div>
-  );
-};
+  </Form>
+  )
+}
 
 export default Profile;
