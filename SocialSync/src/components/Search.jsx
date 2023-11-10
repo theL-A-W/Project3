@@ -13,13 +13,13 @@ export default function Search() {
     e.preventDefault();
     if (searchName) {
       setSearchDisplay(searchName);
-      GetEventsByName(searchName);
+      GetEvents(searchName);
       setFormSubmitted(true);
       navigate(`/NavSearch`);
     }
   }
 
-  const GetEventsByName = async (name) => {
+  const GetEvents = async (name) => {
     try {
       const response = await axios.get(`http://localhost:3001/events`);
       setSearchResultsData(response.data);
