@@ -11,13 +11,13 @@ import { formatDate } from '@fullcalendar/core'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
-
 import { useState, useEffect } from "react"
 
 export default function UserCalendar (){
 const [currentEvents, setCurrentEvents] = useState([])
 const [showEventDetails, setShowEventDetails] = useState(false)
 const [selectedEvent, setSelectedEvent] = useState(null)
+const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
   const getEvents = async () => {
     try {
@@ -36,9 +36,8 @@ const [selectedEvent, setSelectedEvent] = useState(null)
     }
   }
 
-export default function UserCalendar (){
-const [currentEvents, setCurrentEvents] = useState([])
-const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+
+
 console.log(user)
 useEffect(() => {
   // Function to check or create the user
@@ -169,4 +168,4 @@ const handleEvents = (event) => {
 
             </div>
           ) 
-        }
+                }
