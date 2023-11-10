@@ -19,12 +19,12 @@ const Profile = () => {
       const getUserData = async () => {
         try {
           const accessToken = await getAccessTokenSilently();
-          const response = await axios.get(`http://localhost:3001/profile/${user.sub}`, {
+          const response = await axios.get(`http://localhost:3001/Profile/${user.sub}`, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
           });
-          setFormState(response.data); // Assuming the response contains user data
+          setFormState(response.data);
         } catch (error) {
           console.error('Error fetching profile data:', error);
         }

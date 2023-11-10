@@ -16,16 +16,43 @@ const getUserByAuth0Id = async (auth0Id) => {
 
 async function getOneProfile(req, res) {
     try {
+    
         const auth0UserId = req.params.id;
+        console.log("Help", auth0UserId)
         const user = await getUserByAuth0Id(auth0UserId);
+        console.log(user)
         if (!user) {
             return res.status(404).send("User with the specified Auth0 ID doesn't exist");
         }
-        const profile = await Profile.findOne({ userId: user._id });
+        const profile = await Profile.findOne({ userID: user._id });
         if (profile) {
             return res.json(profile);
         }
-        return res.status(404).send("Profile for the given user doesn't exist");
+        else{
+            try {
+                const user = await getUserByAuth0Id(auth0UserId);
+                if (!user) {
+                    return res.status(404).send("User with the specified Auth0 ID doesn't exist");
+                }
+                const profileData = {
+                    ...req.body,
+                    userID: user._id,
+                    firstName: req.body.firstName || '',
+                    lastName: req.body.lastName || '',
+                    dateOfBirth: req.body.dateOfBirth || null,
+                    profileImage: req.body.profileImage || '',
+                  };
+              
+                const profile = new Profile(profileData);
+                await profile.save();
+                return res.status(201).json(profile);
+            } catch (e) {
+                console.log(e)
+                return res.status(500).json({ error: e.message });
+            }
+        
+    }
+        
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -33,15 +60,20 @@ async function getOneProfile(req, res) {
 
 async function createProfile(req, res) {
     try {
-        const auth0UserId = req.user.sub; // or however you get the Auth0 user ID from your auth middleware
+        const auth0UserId = req.user.sub;
         const user = await getUserByAuth0Id(auth0UserId);
         if (!user) {
             return res.status(404).send("User with the specified Auth0 ID doesn't exist");
         }
         const profileData = {
             ...req.body,
-            userId: user._id
-        };
+            userId: user._id,
+            firstName: req.body.firstName || '',
+            lastName: req.body.lastName || '',
+            dateOfBirth: req.body.dateOfBirth || null,
+            profileImage: req.body.profileImage || '',
+          };
+      
         const profile = new Profile(profileData);
         await profile.save();
         return res.status(201).json(profile);
@@ -58,7 +90,7 @@ async function updateProfile(req, res) {
         if (!user) {
             return res.status(404).send("User with the specified Auth0 ID doesn't exist");
         }
-        const profile = await Profile.findOneAndUpdate({ userId: user._id }, req.body, { new: true });
+        const profile = await Profile.findOneAndUpdate({ userID: user._id }, req.body, { new: true });
         if (profile) {
             return res.status(200).json(profile);
         }
@@ -75,7 +107,7 @@ async function deleteProfile(req, res) {
         if (!user) {
             return res.status(404).send("User with the specified Auth0 ID doesn't exist");
         }
-        const profile = await Profile.findOneAndDelete({ userId: user._id });
+        const profile = await Profile.findOneAndDelete({ userID: user._id });
         if (profile) {
             return res.status(200).json(profile);
         }
