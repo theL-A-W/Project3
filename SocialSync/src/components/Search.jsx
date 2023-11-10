@@ -5,7 +5,7 @@ import DataContext from '../DataContext';
 
 export default function Search() {
   const navigate = useNavigate();
-  const { eventDetailData, searchResultsData, setSearchResultsData, searchDisplay, setSearchDisplay } = useContext(DataContext);
+  const { searchResultsData, setSearchResultsData, searchDisplay, setSearchDisplay } = useContext(DataContext);
   const [searchName, setSearchName] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -14,7 +14,8 @@ export default function Search() {
     if (searchName) {
       setSearchDisplay(searchName);
       GetEventsByName(searchName);
-      setFormSubmitted(true); // Set formSubmitted to true on submit
+      setFormSubmitted(true);
+      navigate(`/NavSearch`);
     }
   }
 
@@ -42,7 +43,7 @@ export default function Search() {
         </button>
       </form>
 
-      {formSubmitted && ( // Render only if formSubmitted is true
+      {formSubmitted && (
         <div className="search-results-container">
           {searchResultsData && searchResultsData.length > 0 ? (
             <div className='search-results'>
