@@ -9,7 +9,7 @@ const AuthCallback = () => {
   useEffect(() => {
     const processAuthCallback = async () => {
       await handleRedirectCallback();
-      navigate('/UserCalendar'); // Redirect to UserCalendar page after login
+      navigate('/usercalendar'); // Redirect to callback page after login
     };
     processAuthCallback();
   }, [handleRedirectCallback, navigate]);
