@@ -112,12 +112,14 @@ export default function EventForm (){
       <div className='create-event'>
 
         <button id="create-event" variant="primary" onClick={handleShow}>Create Event</button>
+
         <Modal show={show} onHide={handleClose} backdrop='static'>
     {/* MODAL HEADER */}
           <Modal.Header closeButton id="modal-body">
             <Modal.Title>Create an Event</Modal.Title>
           </Modal.Header>
           <Modal.Body id="modal-body">
+
             <Form>
     {/* EVENT TITLE */}
               <Form.Group className="mb-3" controlId="title">

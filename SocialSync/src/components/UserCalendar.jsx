@@ -108,7 +108,6 @@ const handleEvents = (event) => {
                 setSelectedEvent(eventInfo.event);
               }}
             >
-              <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
               <i>{eventInfo.event.title}</i>
             </div>
           )
