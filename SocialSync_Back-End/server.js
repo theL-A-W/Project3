@@ -100,7 +100,7 @@ app.get('/Profiles', profileController.getAllProfiles)
 app.get('/EventCategories', eventCategoryController.getAllEventCategories)
 app.get('/Event', eventController.getAllEvents)
 
-app.get('/user/auth0/:auth0Id', userController.getUserByAuth0Id);
+app.get('/user/:auth0Id', userController.getUserWithAuth0Id);
 app.get('/User/:id', userController.getOneUser)
 app.get('/Profile/:id', profileController.getOneProfile)
 app.get('/EventCategory/:id', eventCategoryController.getOneEventCategory)
