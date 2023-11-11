@@ -17,7 +17,7 @@ function App() {
 const {isAuthenticated, getAccessTokenSilently}= useAuth0()
 const [eventDetailData, seteventDetailData] = useState({})
 const [searchResultsData, setSearchResultsData] = useState([{}])
-const [searchDisplay, setSearchDisplay] = useState('')
+const [searchDisplay, setSearchDisplay] = useState(null)
   
 useEffect(() => {
     const getToken = async () => {

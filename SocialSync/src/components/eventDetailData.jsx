@@ -1,36 +1,41 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import DataContext from '../../DataContext';
 
 export default function EventDetails() {
-  const { eventDetailData, seteventDetailData, searchResultsData, setSearchResultsData, searchDisplay, setSearchDisplay } = useContext(DataContext);
-   
-  const { id } = useParams(); // This will give you the event ID from the URL
+  const { eventDetailData, seteventDetailData } = useContext(DataContext);
+  const { id } = useParams();
 
   useEffect(() => {
-    // Make a GET request to your API endpoint with the event ID
-    axios.get(`http://localhost:3001/events/${id}`)
-      .then((response) => {
-        // Update the eventDetailData state with the fetched event details
+    const getEvent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/event/${id}`);
         seteventDetailData(response.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching event details:', error);
-      });
-  }, [id]);
+      }
+    };
 
-  return (
+    getEvent();
+  }, [id, seteventDetailData]);
+
+  return eventDetailData ? (
     <div className="eventDetails">
-      <h4>Event Details</h4>
+      <h2>Event Details</h2>
       <div>
-        <h2>{eventDetailData.title}</h2>
+        <h4>{eventDetailData.title}</h4>
         <p>{eventDetailData.description}</p>
         <p>Start Date: {eventDetailData.startDate}</p>
         <p>End Date: {eventDetailData.endDate}</p>
         <p>Privacy Level: {eventDetailData.privacyLevel}</p>
         <p>Location: {eventDetailData.location}</p>
       </div>
+      <button>
+        <Link to="/NavSearch"> Back to Event Search List</Link>
+      </button>
     </div>
+  ) : (
+    <h3>Finding Events...</h3>
   );
 }

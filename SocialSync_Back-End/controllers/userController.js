@@ -9,18 +9,32 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-async function getUserByAuth0Id(req, res) {
+// Function to get user by Auth0 ID
+const getUserByAuth0Id = async (auth0Id) => {
     try {
-        const auth0Id = req.params.auth0Id;
-        const user = await User.findOne({ auth0Id: auth0Id }).populate('friendsUserID');
-        if (!user) {
-            return res.status(404).send("User with the specified Auth0 ID doesn't exist");
-        }
-        res.json(user);
+      const user = await User.findOne({ auth0Id: auth0Id });
+      return user;
     } catch (error) {
-        return res.status(500).send(error.message);
+      throw error;
     }
-}
+  };
+
+// Controller for the route
+const getUserWithAuth0Id = async (req, res) => {
+    try {
+      const auth0Id = req.params.auth0Id;
+      const user = await getUserByAuth0Id(auth0Id);
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      // Send back the user's ObjectId
+      res.json({ _id: user._id });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
 
 async function getOneUser(req, res) {
     try {
@@ -99,5 +113,5 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    getUserByAuth0Id
+    getUserWithAuth0Id
 }
