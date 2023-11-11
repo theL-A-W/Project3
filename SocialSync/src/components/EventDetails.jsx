@@ -41,12 +41,12 @@ export default function EventDetails ( event, onHide){
             aria-labelledby="contained-modal-title-vcenter"
             centered
           >
-            <Modal.Header closeButton>
+            <Modal.Header closeButton id="modal-body">
               <Modal.Title id="contained-modal-title-vcenter">
                 Event Details
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body id="modal-body">
 {/* EVENT TITLE POPULATES HERE */}
                <h4>{Event.title} Ex.  Event Title</h4> 
 {/* EVENT START DATE */}
@@ -81,8 +81,7 @@ export default function EventDetails ( event, onHide){
                 </div>
 
             </Modal.Body>
-            <Modal.Footer>
-     
+            <Modal.Footer id="modal-body">
               <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
           </Modal>
