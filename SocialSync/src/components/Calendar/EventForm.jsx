@@ -110,6 +110,59 @@ export default function EventForm (){
 
     return (
       <div className='create-event'>
+
+        <button id="create-event" variant="primary" onClick={handleShow}>Create Event</button>
+
+
+        <Modal show={show} onHide={handleClose} backdrop='static' >
+{/* MODAL HEADER */}
+        <Modal.Header closeButton id="modal-body">
+          <Modal.Title>Create an Event</Modal.Title>
+        </Modal.Header >
+        <Modal.Body id="modal-body">
+          <Form>
+{/* EVENT TITLE */}
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Event Title:</Form.Label>
+              <Form.Control
+                type="text"
+                // placeholder="Event Name"
+                autoFocus
+              />
+            </Form.Group>
+{/* LOCATION */}
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label>Location:</Form.Label>
+              <Form.Control
+                type="address"
+                // placeholder="Event Name"
+                autoFocus
+              />
+            </Form.Group>
+{/* START DATE */}
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+              <Form.Label>Start Date:</Form.Label>
+              <Form.Control
+                type="datetime-local"
+                // placeholder="Event Name"
+                autoFocus
+              />
+            </Form.Group>
+{/* END DATE */}
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+              <Form.Label>End Date:</Form.Label>
+              <Form.Control
+                type="datetime-local"
+                // placeholder="Event Name"
+                autoFocus
+              />
+            </Form.Group>
+{/* PRIVACY LEVEL */}
+          <Form.Group className='dropdowns'>
+            <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" className="privacy-dropdown">Privacy Level
+                    </Dropdown.Toggle>
+
         <Button id="create-event" variant="primary" onClick={handleShow}>Create Event</Button>
   
         <Modal show={show} onHide={handleClose} backdrop='static'>
@@ -167,7 +220,7 @@ export default function EventForm (){
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer id="modal-body">
           {/* <Button variant="secondary" onClick={handleClose}>
             Close
           </Button> */}
