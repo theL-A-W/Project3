@@ -121,6 +121,7 @@ export default function EventForm (){
             <Modal.Title>Create an Event</Modal.Title>
           </Modal.Header>
           <Modal.Body id="modal-body">
+
             <Form>
     {/* EVENT TITLE */}
               <Form.Group className="mb-3" controlId="title">
