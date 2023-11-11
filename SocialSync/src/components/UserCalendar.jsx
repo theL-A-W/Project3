@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import EventDetails from './EventDetails';
 import { useAuth0 } from '@auth0/auth0-react';
 import FullCalendar from '@fullcalendar/react';
@@ -11,7 +10,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { formatDate } from '@fullcalendar/core';
-import EventDetails from './EventDetails';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

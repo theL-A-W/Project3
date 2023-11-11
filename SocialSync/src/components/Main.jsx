@@ -4,6 +4,7 @@ import UserCalendar from './UserCalendar'
 import UserHomePage from './UserHomePage'
 import Profile from './Profile'
 import NavSearch from './Search'
+import Settings from './Settings'
 // import Authentication from './Authentication'
 // import AuthCallback from '../components/Login/AuthCallback';
 
@@ -16,6 +17,7 @@ export default function Main (){
                 <Route exact path ="/usercalendar" element ={<UserCalendar/>} />
                 <Route exact path ="/UserHomePage" element ={<UserHomePage/>} />
                 <Route exact path ="/Profile" element ={<Profile/>} />
+                <Route exact path ="/Settings" element ={<Settings/>} />
                 <Route exact path ="/Profile" element ={<NavSearch/>} />
                 {/* <Route exact path ="/Authentication" element ={<Authentication/>} /> */}
                 {/* <Route exact path="/callback" element={<AuthCallback />} />  */}

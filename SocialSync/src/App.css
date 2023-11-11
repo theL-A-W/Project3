@@ -24,6 +24,7 @@
   margin: 1vw;
   padding: .5vw;
 }
+
 .profile-img{
   height: 6vh;
   width: 4.25vw;
@@ -38,7 +39,6 @@
 .header{
   width: 100vw;
   padding: 2px 0;
-  margin: 2vh;
 }
 #site-title{
   font-size: 4vw;
@@ -163,4 +163,124 @@ font-size: 2.1vh;
 .dropdowns{
 display: grid;
 grid-template-columns: 11vw 11vw;
+}
+.profile-Form{
+  margin: 10vh 20vw;
+  border: 1px solid rgb(227, 226, 226);
+  border-radius: 1vw;
+  padding: 4vw;
+  box-shadow: 0px 0px 5px grey;
+}
+#profile-button{
+border: 1px solid rgb(227, 226, 226);
+box-shadow: 0px 0px 1px rgb(99, 147, 243);
+color: rgb(99, 147, 243);
+}
+#profile-button:hover{
+  color: white;
+  font-size: 1.5vw;
+  font-weight: 800;
+}
+#profile-title{
+  text-align: center;
+  font-size: 3vw;
+  color: rgb(22, 71, 168);
+  display: grid;
+}
+.profile-buttons{
+  display: grid;
+}
+#cutom-switch:active{
+  animation-duration: 4s;
+}
+#settings-form-box{
+  height: 50vh;
+}
+@keyframes changeBackgroundColorBack {
+  0% {
+    background-color: #1F1B24;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@keyframes changeBackgroundColor {
+  0% {
+    background-color: white;
+  }
+  100% {
+    background-color: #1F1B24;
+  }
+}
+
+
+
+/* default styles for light mode */
+body {
+  background-color: white;
+  color: black;
+  animation: changeBackgroundColorBack 1s linear;
+}
+body .calendar{
+  padding:4vw;
+  margin: 3vw;
+  box-shadow: 0px 0px 5px grey;
+}
+/* dark mode styles */
+body.dark-mode{
+background-color: #1F1B24;
+color: white;
+animation: changeBackgroundColor 1s linear;
+}
+body.dark-mode .profile-Form{
+  box-shadow: 0px 0px 10px white;
+  color: white;
+}
+
+body.dark-mode #profile-title{
+  color: white;
+}
+body.dark-mode .nav{
+  box-shadow: 0px 0px 10px white;
+  background-color: #363439;
+  color: white;
+}
+body.dark-mode #site-title{
+  color: rgb(39, 39, 100);
+}
+
+body.dark-mode .calendar{
+  box-shadow: 0px 0px 10px white;
+  background-color: #363439;
+  color: white;
+  padding:4vw;
+  margin: 3vw;
+}
+body.dark-mode .popular-events{
+  box-shadow: 0px 0px 10px white;
+  background-color: #363439;
+  color: white;
+  padding:4vw;
+  margin: 3vw;
+}
+
+body.dark-mode .upcoming-events{
+  box-shadow: 0px 0px 10px white;
+  background-color: #363439;
+  color: white;
+}
+body.dark-mode #modal-body{
+  background-color: #363439;
+  border: 1px solid #363439;
+  color: white;
+}
+
+body.dark-mode #profile-button{
+  box-shadow: 0px 0px 10px white;
+  color: #363439;
+}
+body.dark-mode #profile-button:hover{
+  box-shadow: 0px 0px 10px white;
+  background-color: #363439;
+  color: white;
 }

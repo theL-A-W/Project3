@@ -15,7 +15,6 @@ import DataContext from './DataContext';
 
 function App() {
 const {isAuthenticated, getAccessTokenSilently}= useAuth0()
-
 const [eventDetailData, seteventDetailData] = useState({})
 const [searchResultsData, setSearchResultsData] = useState([{}])
 const [searchDisplay, setSearchDisplay] = useState('')
@@ -37,7 +36,7 @@ getToken()
   )
 
   return (
-    <div>
+    <div id="light">
       <DataContext.Provider value={{
         eventDetailData, seteventDetailData,
         searchResultsData, setSearchResultsData,

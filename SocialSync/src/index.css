@@ -19,7 +19,9 @@ a {
   color: white;
   text-decoration: inherit;
 }
-
+/* body.dark-mode a{
+  color: rgb(39, 39, 100);
+} */
 
 
 body {
