@@ -99,6 +99,8 @@ app.get('/Users', userController.getAllUsers)
 app.get('/Profiles', profileController.getAllProfiles)
 app.get('/EventCategories', eventCategoryController.getAllEventCategories)
 app.get('/Event', eventController.getAllEvents)
+// New route to search events by name
+app.get('/Event/:search', eventController.searchEventsByName);
 
 app.get('/user/auth0/:auth0Id', userController.getUserByAuth0Id);
 app.get('/User/:id', userController.getOneUser)

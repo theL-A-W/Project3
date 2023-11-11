@@ -5,32 +5,29 @@ import DataContext from '../DataContext';
 
 export default function Search() {
   const navigate = useNavigate();
-  const { searchResultsData, setSearchResultsData, searchDisplay, setSearchDisplay } = useContext(DataContext);
+  const { setSearchResultsData } = useContext(DataContext);
   const [searchName, setSearchName] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [searchDisplay, setSearchDisplay] = useState([]);
 
-  const handleNameSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (searchName) {
-      setSearchDisplay(searchName);
-      GetEvents(searchName);
-      setFormSubmitted(true);
-      navigate(`/NavSearch`);
-    }
-  }
-
-  const GetEvents = async (name) => {
     try {
-      const response = await axios.get(`http://localhost:3001/events`);
-      setSearchResultsData(response.data);
+      const response = await axios.get(`http://localhost:3001/event?name=${searchName}`);
+      setSearchDisplay(response.data.results);
+      navigate(`/NavSearch`);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }
+  };
+
+  const showEvent = (eventId) => {
+    navigate(`/eventdetails/${eventId}`);
+    console.log('Event ID:', eventId);
+  };
 
   return (
     <div className="search">
-      <form onSubmit={handleNameSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           className='search-input'
           type="text"
@@ -43,24 +40,18 @@ export default function Search() {
         </button>
       </form>
 
-      {formSubmitted && (
-        <div className="search-results-container">
-          {searchResultsData && searchResultsData.length > 0 ? (
-            <div className='search-results'>
-              <div className='search-results-query'>Showing results for "{searchDisplay}"</div>
-              <div className='search-results-grid'>
-                {searchResultsData.map((event, index) => (
-                  <div className='search-results-grid-item' key={event._id} onClick={() => eventDetailsByID(event._id)}>
-                    <h2 className='event-title'>{event.title}</h2>
-                    <p className='event-description'>{event.description}</p>
-                    <p className='event-start-date'>Start Date: {event.startDate}</p>
-                  </div>
-                ))}
+      {searchDisplay && searchDisplay.length > 0 ? (
+        <>
+          <h1 className="title">List of Events</h1>
+          <div className="event-card-container">
+            {searchDisplay.map((event) => (
+              <div key={event._id} onClick={() => showEvent(event._id)} className="eventId-Card">
+                <h3>{event.title}</h3>
               </div>
-            </div>
-          ) : null}
-        </div>
-      )}
+            ))}
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }
