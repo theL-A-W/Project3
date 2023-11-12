@@ -13,30 +13,12 @@ export default function Settings (){
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0(); // Destructure the Auth0 hook
   const [darkMode, setDarkMode] = useState(false)
 
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-  };
-
-  // const [formState, setFormState] = useState(initialState);
+  }
 
   useEffect(() => {
-  //   if (isAuthenticated && user) {
-  //     const getUserData = async () => {
-  //       try {
-  //         const accessToken = await getAccessTokenSilently();
-  //         const response = await axios.get(`http://localhost:3001/Profile/${user.sub}`, {
-  //           headers: {
-  //             Authorization: `Bearer ${accessToken}`,
-  //           },
-  //         });
-  //         setFormState(response.data);
-  //       } catch (error) {
-  //         console.error('Error fetching profile data:', error);
-  //       }
-  //     };
-  //     getUserData();
-  //   }
-  // }, [user, isAuthenticated, getAccessTokenSilently]);
 
   if (darkMode) {
     document.body.classList.add('dark-mode');
@@ -47,10 +29,6 @@ export default function Settings (){
     // document.body.style.backgroundColor = 'white'
   }
 }, [darkMode])
-
-// const onChange = (checked) => {
-//   setFormState();
-// };
 
 
 
@@ -65,11 +43,13 @@ export default function Settings (){
         onChange={toggleDarkMode}
         checked={darkMode}
       />
-      {/* <Form.Select aria-label="Default select example">
-      <option>Background</option>
-      <option value="1" >Dark Mode</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+      {/* <Form.Select aria-label="Default select example" onChange={eventColorChange} value={eventColor}>
+      <option>Event Color</option>
+      <option value="1" >Blue</option>
+      <option value="2">Orange</option>
+      <option value="3">Green</option>
+      <option value="4">Red</option>
+      <option value="5">Pink</option>
     </Form.Select> */}
     
       </FormGroup>

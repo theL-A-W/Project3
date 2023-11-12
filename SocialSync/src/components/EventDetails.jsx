@@ -5,25 +5,27 @@ import React, { useState, useEffect } from 'react'
 
 export default function EventDetails ( event, onHide){
     const [modalShow, setModalShow] = useState(false)
+    const [eventDetails, setEventDetails] = useState([])
+    const [currentEvents, setCurrentEvents] = useState([])
 
 //USE THIS OR USECONTEXT TO SEND EVENT DATA FROM CALENDAR AXIOS CALL
 
 
 //AXIOS CALL
-    // useEffect(() => {
-    //   const getEvents = async () => {
-    //     try {
-    //       const response = await axios.get('http://localhost:3001/event')
-    //       console.log(response.data)
-
-    //       setCurrentEvents(response.data.event)
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error)
-    //     }
-    //   }
-    //   getEvents()
-    // }, [])
+    useEffect(() => {
+      const getEvents = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3001/event/${event._id}`)
+          console.log(response.data)
+          setEventDetails(response.data.event)
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        }
+      }
+      getEvents()
+    }, [event._id])
     console.log(modalShow)
+
 
 
 
