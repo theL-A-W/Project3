@@ -99,7 +99,6 @@ const handleEvents = (event) => {
                 dayMaxEvents={true}
                 events={currentEvents}
                 eventContent={renderEventContent}
-                dateClick={handleDateClick}
                 select={handleDateSelect}
                 eventsSet={handleEvents}
                 />
