@@ -17,21 +17,6 @@ const [currentEvents, setCurrentEvents] = useState([])
 const [showEventDetails, setShowEventDetails] = useState(false)
 const [selectedEvent, setSelectedEvent] = useState(null)
 
-// useEffect(() => {
-//   const getEvents = async () => {
-//     try {
-//       const response = await axios.get('http://localhost:3001/event')
-//       console.log(response.data)
-
-//       setCurrentEvents(response.data.event)
-//     } catch (error) {
-//       console.error('Error fetching data:', error)
-//     }
-//   }
-//   getEvents()
-// }, [])
-
-
   const getEvents = async () => {
     try {
       const response = await axios.get('http://localhost:3001/event')
@@ -73,26 +58,13 @@ const [selectedEvent, setSelectedEvent] = useState(null)
             }
         }
 
-//DATE CLICK FUNCTION
-const handleDateClick = (arg) => { // bind with an arrow function
-    alert(arg.dateStr) 
-  
-}
+
 
 //CREATE EVENTS
 const handleEvents = (event) => {
  
   }
 
-//SHOW EVENTS
-        // function renderEventContent(eventInfo) {
-        //     return (
-        //       <div className="render-event">
-        // <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
-        // <i>{eventInfo.event.title}</i>
-        //       </div>
-        //     )
-        //   }
         const renderEventContent = (eventInfo) => {
           return (
             <div
@@ -102,20 +74,12 @@ const handleEvents = (event) => {
                 setSelectedEvent(eventInfo.event);
               }}
             >
+              <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
               <i>{eventInfo.event.title}</i>
             </div>
           )
         }
-// //CLOSE EVENT DETAILS
-//         const closeEventDetails = () => {
-//           setShowEventDetails(false)
-//           setSelectedEvent(null)
-//         }
-        
-//EVENT ONCLICK--DISPLAY EVENT DETAILS
 
-
-          
 
 {/* CALENDAR */}
         return (
@@ -137,11 +101,7 @@ const handleEvents = (event) => {
                 eventContent={renderEventContent}
                 dateClick={handleDateClick}
                 select={handleDateSelect}
-                eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-                // you can update a remote database when these fire:
-                // eventAdd={function(){}}
-                // eventChange={function(){}}
-                // eventRemove={function(){}}
+                eventsSet={handleEvents}
                 />
 {/* EVENT DETAILS */}
                   {/* <EventDetails/> */}
