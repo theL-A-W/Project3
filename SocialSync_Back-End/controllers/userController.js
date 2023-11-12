@@ -9,6 +9,17 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+const searchUsersByEmail = async (req, res) => {
+    try {
+      const email = req.query.email;
+      const users = await User.find({ email: { $regex: email, $options: 'i' }});
+  
+      res.json(users);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  };
+
 // Function to get user by Auth0 ID
 const getUserByAuth0Id = async (auth0Id) => {
     try {
@@ -19,7 +30,6 @@ const getUserByAuth0Id = async (auth0Id) => {
     }
   };
 
-// Controller for the route
 const getUserWithAuth0Id = async (req, res) => {
     try {
       const auth0Id = req.params.auth0Id;
@@ -113,5 +123,6 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    getUserWithAuth0Id
+    getUserWithAuth0Id,
+    searchUsersByEmail
 }
