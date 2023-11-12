@@ -91,8 +91,8 @@ export default function EventForm (){
         console.log(response.data)
         // Close the modal and reset form data after successful submission
         handleClose()
-        setEventData({
-          userId: '',
+        setEventData(prevData => ({
+          ...prevData,
           title: '',
           location: '',
           startDate: '',
@@ -100,7 +100,7 @@ export default function EventForm (){
           privacyLevel: '',
           eventCategoryId: '',
           details: '',
-        })
+        }));
       } catch (error) {
         console.error('Error creating event:', error)
       }
