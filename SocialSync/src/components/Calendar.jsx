@@ -25,7 +25,6 @@ const [selectedEvent, setSelectedEvent] = useState(null)
         title: event.title,
         start: event.startDate,
         end: event.endDate,
-        allDay: false, // adjust as needed based on your data
       }))
       console.log(formattedEvents)
       setCurrentEvents(formattedEvents)
@@ -38,25 +37,10 @@ const [selectedEvent, setSelectedEvent] = useState(null)
   getEvents()
 }, [])
 
-//CREATE TITLE FOR NEW EVENT
-  const handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event')
-    let calendarApi = selectInfo.view.calendar
 
 
 
-    calendarApi.unselect() // clear date selection
 
-            if (title) {
-                calendarApi.addEvent({
-                id: createEventId(),
-                title,
-                start: selectInfo.startStr,
-                end: selectInfo.endStr,
-                allDay: selectInfo.allDay
-                })
-            }
-        }
 
 
 
@@ -65,16 +49,20 @@ const handleEvents = (event) => {
  
   }
 
-        const renderEventContent = (eventInfo) => {
+        const renderEventContent = (eventInfo, formattedEvents) => {
           return (
             <div
               className="render-event"
               onClick={() => {
                 setShowEventDetails(true);
+                console.log(eventInfo.event.title)
+                console.log(formattedEvents)
+                console.log(eventInfo.event.id)
+                console.log(eventInfo.event.start)
+                console.log(eventInfo.event.end)
                 setSelectedEvent(eventInfo.event);
               }}
             >
-              <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
               <i>{eventInfo.event.title}</i>
             </div>
           )
@@ -99,7 +87,7 @@ const handleEvents = (event) => {
                 dayMaxEvents={true}
                 events={currentEvents}
                 eventContent={renderEventContent}
-                select={handleDateSelect}
+                select={(selectInfo) => handleDateSelect(selectInfo, selectedEvent)}
                 eventsSet={handleEvents}
                 />
 {/* EVENT DETAILS */}

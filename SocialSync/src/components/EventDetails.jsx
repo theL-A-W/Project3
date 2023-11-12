@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
-export default function EventDetails ( event, onHide){
+export default function EventDetails ({ event, onHide}){
     const [modalShow, setModalShow] = useState(false)
     const [eventDetails, setEventDetails] = useState([])
     const [currentEvents, setCurrentEvents] = useState([])
@@ -15,16 +15,18 @@ export default function EventDetails ( event, onHide){
     useEffect(() => {
       const getEvents = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/event/${event._id}`)
+          const response = await axios.get(`http://localhost:3001/Event/${event.id}`)
           console.log(response.data)
-          setEventDetails(response.data.event)
+          setEventDetails(response.data)
         } catch (error) {
           console.error('Error fetching data:', error)
         }
       }
       getEvents()
-    }, [event._id])
-    console.log(modalShow)
+    }, [event.id])
+    // console.log(modalShow)
+
+
 
 
 
@@ -50,35 +52,32 @@ export default function EventDetails ( event, onHide){
             </Modal.Header>
             <Modal.Body id="modal-body">
 {/* EVENT TITLE POPULATES HERE */}
-               <h4>{Event.title} Ex.  Event Title</h4> 
+               <h4>{event.title}</h4> 
 {/* EVENT START DATE */}
 <div className='event-start-date'>
                     <label className='event-details-label'>Event Start Date:</label>
-                    <p className='event-text-display'>{Event.startDate}Ex. 11/8/2023</p>
+                    <p className='event-text-display'>{eventDetails.startDate}</p>
               </div>
 {/* EVENT END DATE */}
 <div className='event-end-date'>
                     <label className='event-details-label'>Event End Date:</label>
-                    <p className='event-text-display'>{Event.endDate} Ex. 11/8/2023</p>
+                    <p className='event-text-display'>{eventDetails.endDate}</p>
               </div>
 {/* EVENT PRIVACY LEVEL */}
 <div className='event-privacy-level'>
                     <label className='event-details-label'>Event Privacy Level:</label>
-                    <p className='event-text-display'>{Event.privacyLevel} ex. Public</p>
+                    <p className='event-text-display'>{eventDetails.privacyLevel}</p>
               </div>
 {/* EVENT LOCATION */}
 <div className='event-location'>
                     <label className='event-details-label'>Event Location:</label>
-                    <p className='event-text-display'>{Event.location} ex. 123 Rainbow Road North Pole</p>
+                    <p className='event-text-display'>{eventDetails.location}</p>
               </div>
 {/* EVENT DETAILS */}
                 <div className='event-description'>
                     <label className='event-details-label'>Event Description:</label>
                     <p className='event-text-display'>
-                        {Event.description}
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
+                        {eventDetails.description}
                     </p>
                 </div>
 
