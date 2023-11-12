@@ -4,26 +4,26 @@ import axios from 'axios';
 import DataContext from '../DataContext';
 
 export default function Search() {
-  const navigate = useNavigate();
-  const { setSearchResultsData } = useContext(DataContext);
-  const [searchName, setSearchName] = useState('');
-  const [searchDisplay, setSearchDisplay] = useState([]);
+  const navigate = useNavigate()
+  const { setSearchResultsData } = useContext(DataContext)
+  const [searchName, setSearchName] = useState('')
+  const [searchDisplay, setSearchDisplay] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`http://localhost:3001/event?name=${searchName}`);
-      setSearchDisplay(response.data.results);
-      navigate(`/NavSearch`);
+      const response = await axios.get(`http://localhost:3001/Events/search?name=${searchName}`);
+      setSearchDisplay(response.data);
+      console.log(setSearchDisplay)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
-
+  }
+  console.log(searchName)
   const showEvent = (eventId) => {
-    navigate(`/eventdetails/${eventId}`);
+    // navigate(`/eventdetails/${eventId}`);
     console.log('Event ID:', eventId);
-  };
+  }
 
   return (
     <div className="search">

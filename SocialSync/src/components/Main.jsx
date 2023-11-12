@@ -23,9 +23,9 @@ export default function Main (){
                 <Route exact path ="/Profile" element ={<Profile/>} />
 
                 <Route exact path ="/Settings" element ={<Settings/>} />
-                <Route exact path ="/Profile" element ={<NavSearch/>} />
+                {/* <Route exact path ="/Profile" element ={<NavSearch/>} /> */}
 
-                <Route exact path="/NavSearch" element={<NavSearch />} />
+                {/* <Route exact path="/NavSearch" element={<NavSearch />} /> */}
                 {/* <Route path="/NavSearch" element={<SearchDetails />} /> */}
                 <Route path="/eventdetails/:id" element={<EventDetails />} />
 
