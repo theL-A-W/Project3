@@ -113,8 +113,6 @@ export default function EventForm (){
 
         <button id="create-event" variant="primary" onClick={handleShow}>Create Event</button>
 
-
-
         <Modal show={show} onHide={handleClose} backdrop='static'>
     {/* MODAL HEADER */}
           <Modal.Header closeButton id="modal-body">
@@ -184,4 +182,3 @@ export default function EventForm (){
       </div>
     );
   };
-  
