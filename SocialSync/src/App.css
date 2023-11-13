@@ -289,3 +289,9 @@ body.dark-mode #profile-button:hover{
   background-color: #363439;
   color: white;
 }
+.event-image {
+  width: 400px;
+  height: 300px; 
+  object-fit: cover; /* This property ensures the image maintains its aspect ratio */
+  border-radius: 8px; 
+}

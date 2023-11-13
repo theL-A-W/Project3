@@ -17,7 +17,8 @@ function App() {
 const {isAuthenticated, getAccessTokenSilently}= useAuth0()
 const [eventDetailData, seteventDetailData] = useState({})
 const [searchResultsData, setSearchResultsData] = useState([{}])
-const [searchDisplay, setSearchDisplay] = useState(null)
+// const [searchDisplay, setSearchDisplay] = useState(null)
+const [searchDisplay, setSearchDisplay] = useState([])
   
 useEffect(() => {
     const getToken = async () => {
@@ -44,7 +45,7 @@ getToken()
       }}>
       <Header />
       <Main/>
-      <Footer/>
+      {/* <Footer/> */}
       </DataContext.Provider>
     </div>
   )
