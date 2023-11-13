@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import DataContext from '../../DataContext';
 
-export default function EventDetails() {
+export default function EventDetailsData() {
   const { eventDetailData, seteventDetailData } = useContext(DataContext);
   const { id } = useParams();
 
