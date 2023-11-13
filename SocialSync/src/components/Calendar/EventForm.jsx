@@ -107,9 +107,7 @@ export default function EventForm (){
         console.error('Error creating event:', error)
       }
     }
-    const handleDeleteEvent = () => {
-      setFormState(initialState);
-    };
+
 
 
     return (
@@ -180,12 +178,6 @@ export default function EventForm (){
 {/* CREATE EVENT BUTTON */}
           <Button variant="primary" onClick={handleCreateEvent}>
             Create Event
-          </Button>
-          <Button variant="secondary" >
-            Edit
-          </Button>
-          <Button variant="danger" onClick={handleDeleteEvent}>
-            Delete
           </Button>
         </Modal.Footer>
       </Modal>

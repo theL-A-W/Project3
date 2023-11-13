@@ -8,7 +8,6 @@ export default function EventDetails ({ event, onHide}){
     const [eventDetails, setEventDetails] = useState([])
     const [currentEvents, setCurrentEvents] = useState([])
 
-//USE THIS OR USECONTEXT TO SEND EVENT DATA FROM CALENDAR AXIOS CALL
 
 
 //AXIOS CALL
@@ -28,7 +27,17 @@ export default function EventDetails ({ event, onHide}){
 
 
 
-
+//DELETE EVENT
+const handleDeleteEvent =()=>{
+  const deleteEvents = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/event/${event.id}`)
+    } catch (error) {
+      console.error('Error deleting data:', error)
+    }
+  }
+  deleteEvents()
+}
 
 
     useEffect(() => {
@@ -83,6 +92,12 @@ export default function EventDetails ({ event, onHide}){
 
             </Modal.Body>
             <Modal.Footer id="modal-body">
+            <Button variant="secondary" >
+            Edit
+          </Button>
+          <Button variant="danger" onClick={() => { handleDeleteEvent(); props.onHide();handleRefresh }}>
+            Delete
+          </Button>
               <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
           </Modal>
