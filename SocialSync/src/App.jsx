@@ -44,7 +44,7 @@ getToken()
       }}>
       <Header />
       <Main/>
-      <Footer/>
+      {/* <Footer/> */}
       </DataContext.Provider>
     </div>
   )
