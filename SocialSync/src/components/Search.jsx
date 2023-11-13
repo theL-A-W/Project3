@@ -64,12 +64,12 @@ export default function Search() {
              <Modal.Title className="title">List of Events</Modal.Title>
           </Modal.Header>
           <div className="event-card-container">
-          <Modal.Body id="modal-body">
+          <Modal.Body id="modal-body" className="search-modal" >
             {searchDisplay.map((event, props) => (
 
               <div key={event._id} onClick={() => showEvent(event._id)} className="eventId-Card">
 
-          <Card style={{ width: '18rem' }}>
+          <Card id="card-style">
                 {event.image ? (
                 <Card.Img variant="top" className="event-image" src={event.image} alt={`Image for ${event.title}`} />
               ) : (
