@@ -11,7 +11,7 @@ export default function Search() {
   const { eventDetailData, seteventDetailData, searchResultsData, setSearchResultsData, searchDisplay, setSearchDisplay} = useContext(DataContext)
   const [searchName, setSearchName] = useState('')
 
-  const [searchDisplay, setSearchDisplay] = useState([])
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [show, setShow] = useState(false);
@@ -69,23 +69,19 @@ export default function Search() {
 
               <div key={event._id} onClick={() => showEvent(event._id)} className="eventId-Card">
 
-                <h3>{event.title}</h3>
+          <Card style={{ width: '18rem' }}>
                 {event.image ? (
-                <img className="event-image" src={event.image} alt={`Image for ${event.title}`} />
+                <Card.Img variant="top" className="event-image" src={event.image} alt={`Image for ${event.title}`} />
               ) : (
-                <img className="event-image" src="https://www.somaiya.edu/assets/research-branding/img/homepage/events-default.jpg" alt="Default Image" />
+                <Card.Img variant="top" className="event-image" src="https://www.somaiya.edu/assets/research-branding/img/homepage/events-default.jpg" alt="Default Image" />
               )}
-
-
-                  <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={event.image}/>
                         <Card.Body>
                           <Card.Title>{event.title}</Card.Title>
                           <Card.Text>
                           {event.description}
                           </Card.Text>
                         </Card.Body>
-                      </Card>
+          </Card>
 
               </div>
             ))}
