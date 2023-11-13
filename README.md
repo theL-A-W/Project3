@@ -3,6 +3,12 @@
 
 Welcome to SocialSync, a full-stack social media application optimized for web view first. SocialSync allows users to create profiles, access multiple types of calendars (public, friends, and personal), and discover events in their area. With SocialSync, you can easily manage and interact with events through a user-friendly interface.
 
+
+<div style="display: flex; justify-content: space-around;">
+    <img src="./ReadMe_Images/MainLight.png" alt="Main Light" width="400"/>
+    <img src="./ReadMe_Images/MainDark.png" alt="Main Dark" width="400"/>
+</div>
+
 ## Features
 
 - **User Profiles:** Create and customize your user profile with personal information and preferences.
@@ -139,9 +145,7 @@ Remember to check the console or terminal for any error messages during the inst
 
 ## Cool Features and Successes
 
-- Full planning, including collaborative wireframes, CHD (Component Hierarchy Diagram), and Trello board.
-
-- Wireframes were used to drive functionality discussions.
+- Full planning, including collaborative wireframes, CHD (Component Hierarchy Diagram), ERD (Entity-Relationship Diagram) and Trello board.
 
 - CHD was used to visually facilitate pseudo code and design assumptions.
 
@@ -149,13 +153,15 @@ Remember to check the console or terminal for any error messages during the inst
 
 - Use of Trello for collaboration and task assignment.
 
-- useContext used extensively for state management.
+- useContext used for state management.
 
 - Query-free navigation with useStates/useContext instead of param-based routes.
 
 - onClick anonymous functions to build functionality into button clicks.
 
 - Search results mapping.
+
+- Light and Dark mode.
 
 ## Challenges
 
