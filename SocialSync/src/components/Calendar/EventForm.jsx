@@ -20,12 +20,13 @@ export default function EventForm (){
   const [eventData, setEventData] = useState({
     userId: '',
     title: '',
+    image: '',
     location: '',
     startDate: '',
     endDate: '',
     privacyLevel: '',
     eventCategoryId: '',
-    details: '',
+    description: '',
   });
 
   useEffect(() => {
@@ -93,15 +94,17 @@ export default function EventForm (){
         console.log(response.data)
         // Close the modal and reset form data after successful submission
         handleClose()
+        window.location.reload()
         setEventData(prevData => ({
           ...prevData,
           title: '',
+          image: '',
           location: '',
           startDate: '',
           endDate: '',
           privacyLevel: '',
           eventCategoryId: '',
-          details: '',
+          description: '',
         }));
       } catch (error) {
         console.error('Error creating event:', error)
@@ -127,6 +130,11 @@ export default function EventForm (){
               <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Event Title:</Form.Label>
                 <Form.Control type="text" onChange={handleInputChange} value={eventData.title} />
+              </Form.Group>
+    {/* EVENT IMAGE */}
+              <Form.Group controlId="image" className="mb-3">
+              <Form.Label>Event Image Link:</Form.Label>
+              <Form.Control type="text" onChange={handleInputChange} value={eventData.image}/>
               </Form.Group>
   {/* LOCATION */}
               <Form.Group className="mb-3" controlId="location">
@@ -164,10 +172,10 @@ export default function EventForm (){
 {/* DETAILS */}
             <Form.Group
               className="mb-3"
-              controlId="details"
+              controlId="description"
             >
               <Form.Label>Event Details:</Form.Label>
-              <Form.Control as="textarea" rows={3} onChange={handleInputChange} value={eventData.details}/>
+              <Form.Control as="textarea" rows={3} onChange={handleInputChange} value={eventData.description}/>
             </Form.Group>
           </Form>
         </Modal.Body>

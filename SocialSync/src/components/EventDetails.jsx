@@ -37,6 +37,7 @@ const handleDeleteEvent =()=>{
     }
   }
   deleteEvents()
+  window.location.reload()
 }
 
 
@@ -95,7 +96,7 @@ const handleDeleteEvent =()=>{
             <Button variant="secondary" >
             Edit
           </Button>
-          <Button variant="danger" onClick={() => { handleDeleteEvent(); props.onHide();handleRefresh }}>
+          <Button variant="danger" onClick={() => { handleDeleteEvent(); props.onHide() }}>
             Delete
           </Button>
               <Button onClick={props.onHide}>Close</Button>

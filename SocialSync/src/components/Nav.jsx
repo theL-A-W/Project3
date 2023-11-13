@@ -1,7 +1,7 @@
 import Search from './Search'
 import Authentication from './Login/Authentication'
 import { Link } from 'react-router-dom'
-import Pr from './Login/Pr'
+// import Pr from './Login/Pr'
 
 
 export default function Nav (){
@@ -11,7 +11,7 @@ export default function Nav (){
             <div id="site-title"><Link to="/">SocialSync</Link></div>
             <Search />
             <Authentication/>
-            <Pr/>
+            {/* <Pr/> */}
         </div>
 )
 }
