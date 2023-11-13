@@ -5,14 +5,16 @@ import DataContext from '../DataContext';
 
 export default function Search() {
   const navigate = useNavigate()
-  const { setSearchResultsData } = useContext(DataContext)
+  const { eventDetailData, seteventDetailData, searchResultsData, setSearchResultsData, searchDisplay, setSearchDisplay} = useContext(DataContext)
   const [searchName, setSearchName] = useState('')
-  const [searchDisplay, setSearchDisplay] = useState([])
+ 
 
   const handleSubmit = async (e) => {
+    // navigate(`/NavSearch`);
     e.preventDefault();
     try {
       const response = await axios.get(`http://localhost:3001/Events/search?name=${searchName}`);
+      setSearchResultsData(response.data);
       setSearchDisplay(response.data);
       console.log(setSearchDisplay)
     } catch (error) {
@@ -21,7 +23,7 @@ export default function Search() {
   }
   console.log(searchName)
   const showEvent = (eventId) => {
-    // navigate(`/eventdetails/${eventId}`);
+    navigate(`/eventdetails/${eventId}`);
     console.log('Event ID:', eventId);
   }
 
@@ -47,6 +49,11 @@ export default function Search() {
             {searchDisplay.map((event) => (
               <div key={event._id} onClick={() => showEvent(event._id)} className="eventId-Card">
                 <h3>{event.title}</h3>
+                {event.image ? (
+                <img className="event-image" src={event.image} alt={`Image for ${event.title}`} />
+              ) : (
+                <img className="event-image" src="https://www.somaiya.edu/assets/research-branding/img/homepage/events-default.jpg" alt="Default Image" />
+              )}
               </div>
             ))}
           </div>
