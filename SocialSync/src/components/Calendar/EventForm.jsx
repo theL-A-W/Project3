@@ -119,7 +119,9 @@ export default function EventForm (){
     {/* EVENT IMAGE */}
               <Form.Group controlId="image" className="mb-3">
               <Form.Label>Event Image Link:</Form.Label>
-              <Form.Control type="file/" onChange={handleInputChange} value={eventData.image}/>
+
+              <Form.Control type="text" onChange={handleInputChange} value={eventData.image}/>
+                
               </Form.Group>
   {/* LOCATION */}
               <Form.Group className="mb-3" controlId="location">

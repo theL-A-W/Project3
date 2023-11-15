@@ -1,9 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import EventDetails from './EventDetails';
-
 import { useAuth0 } from '@auth0/auth0-react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -89,15 +87,6 @@ const handleEvents = (event) => {
  
   }
 
-//SHOW EVENTS
-        // function renderEventContent(eventInfo) {
-        //     return (
-        //       <div className="render-event">
-        // <b>{formatDate(eventInfo.event.start, { year: 'numeric', month: 'numeric', day: 'numeric' })}</b>
-        // <i>{eventInfo.event.title}</i>
-        //       </div>
-        //     )
-        //   }
         const renderEventContent = (eventInfo) => {
           // userId === currentUserId?
           return (
@@ -132,11 +121,7 @@ const handleEvents = (event) => {
                 eventContent={renderEventContent}
                 dateClick={handleDateClick}
                 select={handleDateSelect}
-                eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-                // you can update a remote database when these fire:
-                // eventAdd={function(){}}
-                // eventChange={function(){}}
-                // eventRemove={function(){}}
+                eventsSet={handleEvents}
                 />
 
 {/* EVENT DETAILS */}
