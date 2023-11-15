@@ -15,6 +15,7 @@ export default function ProfileDropdown (){
 
                 <Dropdown.Menu>
                     <Dropdown.Item onClick={()=>(navigate(`/UserHomePage`))}>User Home</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>(navigate(`/FriendsPage`))}>Friends Page</Dropdown.Item>
                     <Dropdown.Item onClick={()=>(navigate(`/Profile`))}>Profile</Dropdown.Item>
                     <Dropdown.Item onClick={()=>(navigate('./Settings' ))}>Settings</Dropdown.Item>
                 </Dropdown.Menu>

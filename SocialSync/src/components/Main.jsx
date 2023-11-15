@@ -5,6 +5,7 @@ import UserHomePage from './UserHomePage'
 import Profile from './Profile'
 import NavSearch from './Search'
 import Settings from './Settings'
+import FriendsPage from './Friends/FriendsPage'
 
 // import SearchDetails from './SearchDetails'; 
 import EventDetails from './EventDetails'; // Add this line
@@ -20,6 +21,7 @@ export default function Main (){
                 <Route exact path ="/" element ={<Home/>} />
                 <Route exact path ="/usercalendar" element ={<UserCalendar/>} />
                 <Route exact path ="/UserHomePage" element ={<UserHomePage/>} />
+                <Route exact path ="/FriendsPage" element ={<FriendsPage/>} />
                 <Route exact path ="/Profile" element ={<Profile/>} />
 
                 <Route exact path ="/Settings" element ={<Settings/>} />

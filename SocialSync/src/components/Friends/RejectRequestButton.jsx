@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
-const RejectRequestButton = ({ requestId, getAccessTokenSilently, onReject }) => {
+const RejectRequestButton = ({ user, requestId, getAccessTokenSilently, onReject }) => {
     const handleReject = async () => {
         try {
+            console.log("Sub:", user.sub)
             const accessToken = await getAccessTokenSilently();
-            await axios.delete(`http://localhost:3001/friendships/reject/${requestId}`, {
+            await axios.put(`http://localhost:3001/friendships/reject/${requestId}`, {
+                userAuth0Id: user.sub // Send the user's Auth0 ID 
+        },{
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },

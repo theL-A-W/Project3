@@ -70,6 +70,7 @@ async function getOneEvent(req, res) {
 async function createEvent(req, res) {
     try {
         const event = new Event(req.body);
+        console.log(req.body)
         await event.save();
         return res.status(201).json({
             event

@@ -6,7 +6,6 @@ const SearchFriends = ({ onUserSelect }) => {
     const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = async () => {
-        // Implement search logic here
         try {
             const response = await axios.get(`http://localhost:3001/users/search?email=${email}`);
             setSearchResults(response.data);
