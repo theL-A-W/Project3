@@ -58,23 +58,6 @@ export default function EventForm (){
     }));
   };
 
-
-
-//AXIOS POST
-    // useEffect(() => {
-    //   const getEvents = async () => {
-    //     try {
-    //       const response = await axios.post(`http://localhost:3001/event`)
-    //       console.log(response.data)
-
-    //       setCurrentEvents(response.data.event)
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error)
-    //     }
-    //   }
-    //   getEvents()
-    // }, [])
-
     const handleDropdownChange = (type, value) => {
       setEventData(prevData => ({
         ...prevData,
@@ -85,12 +68,14 @@ export default function EventForm (){
 
     const handleCreateEvent = async () => {
       try {
+        console.log(eventData)
         const accessToken = await getAccessTokenSilently();
-        const response = await axios.post('http://localhost:3001/event', eventData, {
+        const response = await axios.post('http://localhost:3001/Event', eventData, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         });
+        
         console.log(response.data)
         // Close the modal and reset form data after successful submission
         handleClose()
@@ -134,7 +119,9 @@ export default function EventForm (){
     {/* EVENT IMAGE */}
               <Form.Group controlId="image" className="mb-3">
               <Form.Label>Event Image Link:</Form.Label>
+
               <Form.Control type="text" onChange={handleInputChange} value={eventData.image}/>
+                
               </Form.Group>
   {/* LOCATION */}
               <Form.Group className="mb-3" controlId="location">

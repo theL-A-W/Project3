@@ -1,5 +1,5 @@
 const { User }  = require('../models');
-
+const {log}=console
 const getAllUsers = async (req, res) => {
     try {
         const Users = await User.find();
@@ -8,6 +8,35 @@ const getAllUsers = async (req, res) => {
         return res.status(500).send(error.message);
     }
 }
+
+// Function to get user by Auth0 ID
+const getUserByAuth0Id = async (auth0Id) => {
+    log("getuserby", auth0Id)
+    try {
+        return await User.findOne({ auth0Id: auth0Id });
+    } catch (error) {
+        throw error;
+    }
+};
+
+  const getUserWithAuth0Id = async (req, res) => {
+    log("req:", req.params)
+    try {
+      const auth0Id = req.params.auth0Id;
+      console.log("Auth0 ID:", auth0Id); // Log the Auth0 ID
+      const user = await getUserByAuth0Id(auth0Id);
+      console.log("User found:", user); // Log the found user
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      res.json({ _id: user._id });
+    } catch (error) {
+      console.error("Error in getUserWithAuth0Id:", error);
+      res.status(500).json({ error: error.message });
+    }
+};
+
 
 const searchUsersByEmail = async (req, res) => {
     try {
@@ -20,31 +49,7 @@ const searchUsersByEmail = async (req, res) => {
     }
   };
 
-// Function to get user by Auth0 ID
-const getUserByAuth0Id = async (auth0Id) => {
-    try {
-      const user = await User.findOne({ auth0Id: auth0Id });
-      return user;
-    } catch (error) {
-      throw error;
-    }
-  };
 
-const getUserWithAuth0Id = async (req, res) => {
-    try {
-      const auth0Id = req.params.auth0Id;
-      const user = await getUserByAuth0Id(auth0Id);
-  
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-  
-      // Send back the user's ObjectId
-      res.json({ _id: user._id });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
 
 async function getOneUser(req, res) {
     try {
